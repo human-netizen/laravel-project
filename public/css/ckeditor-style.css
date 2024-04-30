@@ -1,0 +1,65 @@
+/* ckeditor-style.css */
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; /* Default font size for the document */
+    color: #333333;
+}
+
+h1 {
+    font-size: 32px; /* Equivalent to 2rem if base size is 16px */
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px; /* 1.5rem */
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 9px;
+}
+
+h3 {
+    font-size: 20px; /* 1.25rem */
+    font-weight: bold;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+p {
+    font-size: 16px; /* 1rem */
+    margin-bottom: 16px; /* 1rem */
+    line-height: 1.5; /* Tailwind's leading-loose */
+}
+
+ul, ol {
+    font-size: 16px;
+    padding-left: 40px; /* Sufficient space for bullet/number */
+    margin-bottom: 16px;
+}
+
+li {
+    margin-bottom: 4px; /* Smaller space between list items */
+}
+
+a {
+    color: #065f46; /* Example of a Tailwind color 'teal-700' */
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd; /* Light gray border */
+    padding: 8px; /* Padding inside cells */
+}
+
+th {
+    background-color: #f3f4f6; /* Tailwind gray-100 for header background */
+    font-weight: bold;
+}
+
+/* Additional styles for other elements as needed */

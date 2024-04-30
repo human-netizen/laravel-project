@@ -1,0 +1,115 @@
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+/* Additional styling for Bootstrap Badge Colors */
+.badge-fancy {
+    padding: 8px 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+     /* Add margin between badges */
+}
+.badge-success-fancy {
+    background-color: #28a745;
+    color: white;
+}
+.badge-danger-fancy {
+    background-color: #dc3545;
+    color: white;
+}
+/* Optional: Additional hover effect */
+.badge-fancy:hover {
+    opacity: 0.8;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.ck-editor__editable[role="textbox"] {
+    /* Editing area */
+    min-height: 500px;
+}
+.ck-content .image {
+    /* Block images */
+    max-width: 80%;
+    margin: 20px auto;
+}
+/* Targeting the CKEditor content area */
+.ck-content h2 {
+    font-size: 32px; /* Equivalent to 2rem if base size is 16px */
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.ck-content h3 {
+    font-size: 24px; /* 1.5rem */
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 9px;
+}
+
+.ck-content h4 {
+    font-size: 20px; /* 1.25rem */
+    font-weight: bold;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.ck-content p {
+    font-size: 16px; /* 1rem */
+    margin-bottom: 16px; /* 1rem */
+    line-height: 1.5; /* Tailwind's leading-loose */
+}
+
+.ck-content ul {
+    list-style-type: disc; /* Ensures that bullets are shown */
+    
+    margin-bottom: 16px;
+}
+
+.ck-content ol {
+    list-style-type: decimal; /* Ensures numbered lists */
+    padding-left: 20px; /* Adjust as needed for indentation */
+    margin-bottom: 16px;
+}
+
+
+.ck-content li {
+    margin-bottom: 4px; /* Smaller space between list items */
+}
+
+.ck-content a {
+    color: #065f46; /* Example of a Tailwind color 'teal-700' */
+    text-decoration: underline;
+}
+
+.ck-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ck-content th,
+.ck-content td {
+    border: 1px solid #ddd; /* Light gray border */
+    padding: 8px; /* Padding inside cells */
+}
+
+.ck-content th {
+    background-color: #f3f4f6; /* Tailwind gray-100 for header background */
+    font-weight: bold;
+}
+
+
+
+
+

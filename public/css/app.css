@@ -1,4 +1,3 @@
-
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -14,7 +13,7 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-     /* Add margin between badges */
+    /* Add margin between badges */
 }
 .badge-success-fancy {
     background-color: #28a745;
@@ -28,10 +27,9 @@
 .badge-fancy:hover {
     opacity: 0.8;
 }
-.card-body{
+.card-body {
     display: flex;
     flex-direction: column;
-    
 }
 
 .ck-editor__editable[role="textbox"] {
@@ -73,7 +71,7 @@
 
 .ck-content ul {
     list-style-type: disc; /* Ensures that bullets are shown */
-    
+
     margin-bottom: 16px;
 }
 
@@ -82,7 +80,6 @@
     padding-left: 20px; /* Adjust as needed for indentation */
     margin-bottom: 16px;
 }
-
 
 .ck-content li {
     margin-bottom: 4px; /* Smaller space between list items */
@@ -109,7 +106,251 @@
     font-weight: bold;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Rubik", sans-serif;
+}
+* ul {
+    list-style: none;
+}
+* a {
+    text-decoration: none;
+}
 
+body {
+    background: #abd1c6;
+}
 
+main {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+main section.comment-module {
+    width: 50%;
+    height: auto;
+    background: #fff;
+    margin: 100px 0px;
+    border-radius: 5px;
+    padding: 50px 75px;
+}
+main section.comment-module ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 50px;
+    margin-left: 0px;
+}
+main section.comment-module ul li {
+    width: 100%;
+    position: relative;
+}
+main section.comment-module ul li .comment {
+    width: 100%;
+    display: flex;
+    column-gap: 20px;
+}
+main section.comment-module ul li .comment .comment-img {
+    width: 7%;
+}
+main section.comment-module ul li .comment .comment-img img {
+    width: 50px;
+    height: 50px;
+}
+main section.comment-module ul li .comment .comment-content {
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+main section.comment-module ul li .comment .comment-content .comment-details {
+    width: 100%;
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    justify-content: flex-start;
+}
+main
+    section.comment-module
+    ul
+    li
+    .comment
+    .comment-content
+    .comment-details
+    .comment-name {
+    text-transform: capitalize;
+}
+main
+    section.comment-module
+    ul
+    li
+    .comment
+    .comment-content
+    .comment-details
+    .comment-log {
+    color: #7a7a7a;
+    font-size: 14px;
+}
+main section.comment-module ul li .comment .comment-content .comment-data {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 20px;
+}
+main
+    section.comment-module
+    ul
+    li
+    .comment
+    .comment-content
+    .comment-data
+    .comment-likes {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+}
+main
+    section.comment-module
+    ul
+    li
+    .comment
+    .comment-content
+    .comment-data
+    .comment-likes
+    > div {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+}
+main
+    section.comment-module
+    ul
+    li
+    .comment
+    .comment-content
+    .comment-data
+    .comment-likes
+    > div
+    img {
+    cursor: pointer;
+}
+main
+    section.comment-module
+    ul
+    li
+    .comment
+    .comment-content
+    .comment-data
+    .comment-likes
+    > div
+    span {
+    font-weight: 600;
+}
+main
+    section.comment-module
+    ul
+    li
+    .comment
+    .comment-content
+    .comment-data
+    .comment-reply
+    a,
+main
+    section.comment-module
+    ul
+    li
+    .comment
+    .comment-content
+    .comment-data
+    .comment-report
+    a {
+    color: #272727;
+    font-weight: 400;
+}
+main section.comment-module ul li::before {
+    content: "";
+    position: absolute;
+    top: 60px;
+    left: 50px;
+    transform: translateX(-25px);
+    width: 2px;
+    height: calc(100% - 60px);
+    background: #c5c5c5;
+}
+main section.comment-module ul li ul {
+    margin-top: 35px;
+    margin-left: 70px;
+    width: calc(100% - 70px);
+}
 
-
+@media screen and (max-width: 1600px) {
+    main section.comment-module {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 1400px) {
+    main section.comment-module {
+        width: 70%;
+    }
+    main section.comment-module ul li .comment .comment-img {
+        width: 10%;
+    }
+    main section.comment-module ul li .comment .comment-content {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    main section.comment-module {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 768px) {
+    main section.comment-module {
+        width: 96%;
+        padding: 75px 10px;
+    }
+    main section.comment-module ul li .comment {
+        column-gap: 12px;
+    }
+    main section.comment-module ul li .comment .comment-img {
+        width: 15%;
+    }
+    main section.comment-module ul li .comment .comment-img img {
+        width: 40px;
+        height: 40px;
+    }
+    main section.comment-module ul li .comment .comment-content {
+        width: 85%;
+    }
+    main
+        section.comment-module
+        ul
+        li
+        .comment
+        .comment-content
+        .comment-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    main section.comment-module ul li .comment .comment-content .comment-data {
+        column-gap: 12px;
+    }
+    main section.comment-module ul li::before {
+        top: 50px;
+        left: 50px;
+        transform: translateX(-30px);
+        height: calc(100% - 60px);
+    }
+    main section.comment-module ul li ul {
+        margin-top: 25px;
+        margin-left: 50px;
+        width: calc(100% - 50px);
+    }
+}

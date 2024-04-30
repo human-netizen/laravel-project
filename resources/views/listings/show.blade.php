@@ -55,4 +55,148 @@
             </button>
         </form>
     </x-card>
+    <section class="comment-module">
+        <ul>
+            <li>
+                <div class="comment">
+                    <div class="comment-img">
+                        <img src="https://rvs-comment-module.vercel.app/Assets/User Avatar.png" alt="">
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-details">
+                            <h4 class="comment-name">Adamsdavid</h4>
+                            <span class="comment-log">20 hours ago</span>
+                        </div>
+                        <div class="comment-desc">
+                            <p>I genuinely think that Codewell's community is AMAZING. It's just starting out but the templates on there amazing.</p>
+                        </div>
+                        <div class="comment-data">
+                            <div class="comment-likes">
+                                <div class="comment-likes-up">
+                                    <img src="https://rvs-comment-module.vercel.app/Assets/Up.svg" alt="">
+                                    <span>2</span>
+                                </div>
+                                <div class="comment-likes-down">
+                                    <img src="https://rvs-comment-module.vercel.app/Assets/Down.svg" alt="">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="comment-reply">
+                                <a href="#!">Reply</a>
+                            </div>
+                            <div class="comment-report">
+                                <a href="#!">Report</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+                        <div class="comment">
+                            <div class="comment-img">
+                                <img src="https://rvs-comment-module.vercel.app/Assets/User Avatar-1.png" alt="">
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-details">
+                                    <h4 class="comment-name">saramay</h4>
+                                    <span class="comment-log">16 hours ago</span>
+                                </div>
+                                <div class="comment-desc">
+                                    <p>I agree. I've been coding really well (pun intended) ever since I started practicing on their templates hehe.</p>
+                                </div>
+                                <div class="comment-data">
+                                    <div class="comment-likes">
+                                        <div class="comment-likes-up">
+                                            <img src="https://rvs-comment-module.vercel.app/Assets/Up.svg" alt="">
+                                            <span>5</span>
+                                        </div>
+                                        <div class="comment-likes-down">
+                                            <img src="https://rvs-comment-module.vercel.app/Assets/Down.svg" alt="">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="comment-reply">
+                                        <a href="#!">Reply</a>
+                                    </div>
+                                    <div class="comment-report">
+                                        <a href="#!">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="comment">
+                                    <div class="comment-img">
+                                        <img src="https://rvs-comment-module.vercel.app/Assets/User Avatar-2.png" alt="">
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comment-details">
+                                            <h4 class="comment-name">Jessica21</h4>
+                                            <span class="comment-log">14 hours ago</span>
+                                        </div>
+                                        <div class="comment-desc">
+                                            <p>Okay, this comment wins.</p>
+                                        </div>
+                                        <div class="comment-data">
+                                            <div class="comment-likes">
+                                                <div class="comment-likes-up">
+                                                    <img src="https://rvs-comment-module.vercel.app/Assets/Up.svg" alt="">
+                                                    <span>5</span>
+                                                </div>
+                                                <div class="comment-likes-down">
+                                                    <img src="https://rvs-comment-module.vercel.app/Assets/Down.svg" alt="">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div class="comment-reply">
+                                                <a href="#!">Reply</a>
+                                            </div>
+                                            <div class="comment-report">
+                                                <a href="#!">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <div class="comment">
+                    <div class="comment-img">
+                        <img src="https://rvs-comment-module.vercel.app/Assets/User Avatar-3.png" alt="">
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-details">
+                            <h4 class="comment-name">andrew231</h4>
+                            <span class="comment-log">20 hours ago</span>
+                        </div>
+                        <div class="comment-desc">
+                            <p>Thanks for making this, super helpful</p>
+                        </div>
+                        <div class="comment-data">
+                            <div class="comment-likes">
+                                <div class="comment-likes-up">
+                                    <img src="https://rvs-comment-module.vercel.app/Assets/Up.svg" alt="">
+                                    <span>2</span>
+                                </div>
+                                <div class="comment-likes-down">
+                                    <img src="https://rvs-comment-module.vercel.app/Assets/Down.svg" alt="">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="comment-reply">
+                                <a href="#!">Reply</a>
+                            </div>
+                            <div class="comment-report">
+                                <a href="#!">Report</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
 @endsection

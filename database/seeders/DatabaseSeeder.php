@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Comment;
 use App\Models\Test;
 use App\Models\User;
 use App\Models\Listing;
@@ -21,9 +22,17 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         //Listing::factory(5)->create();
         $user = User::factory()->create();
-        Listing::factory(5)->create([
+        $listings = Listing::factory(5)->create([
             'user_id' => $user->id
         ]);
+        foreach ($listings as $listing) {
+            // Access properties or methods of each listing
+            Comment::factory(5)->create([
+                'user_id' => $user->id , 
+                'listing_id' => $listing->id
+            ]);
+        }
+        
         // Listing::create([
         //     'title' => 'Laravel Senior Developer', 
         //     'tags' => 'laravel, javascript',

@@ -124,12 +124,7 @@ body {
     background: #abd1c6;
 }
 
-main {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-}
+
 main section.comment-module {
     width: 50%;
     height: auto;

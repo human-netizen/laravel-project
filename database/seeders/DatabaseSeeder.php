@@ -17,22 +17,53 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        //Listing::factory(5)->create();
-        $user = User::factory()->create();
+        // Create a few users and listings for association
+        $users = User::factory(10)->create();
         $listings = Listing::factory(5)->create([
-            'user_id' => $user->id
+            'user_id' => $users->random()
         ]);
+
+        // Loop through each listing to add comments
         foreach ($listings as $listing) {
-            // Access properties or methods of each listing
-            Comment::factory(5)->create([
-                'user_id' => $user->id , 
-                'listing_id' => $listing->id
-            ]);
+            // Each listing gets 5 top-level comments
+            foreach (range(1, 5) as $index) {
+                $user = $users->random(); // Randomly pick one user
+
+                // Create a top-level comment
+                $comment = Comment::factory()->create([
+                    'user_id' => $listing->user_id,
+                    'listing_id' => $listing->id,
+                    'parent_id' => null
+                ]);
+
+                // Randomly decide to add 0-3 subcomments to this comment
+                foreach (range(1, rand(0, 3)) as $subIndex) {
+                    $subUser = $users->random(); // Randomly pick one user for subcomment
+
+                    $subcomment = Comment::factory()->create([
+                        'user_id' => $subUser->id,
+                        'listing_id' => $listing->id,
+                        'parent_id' => $comment->id
+                    ]);
+
+                        foreach (range(1, rand(0, 3)) as $subSubIndex) {
+                            $subSubUser = $users->random(); // Randomly pick one user for subcomment
+
+                            Comment::factory()->create([
+                                'user_id' => $subSubUser->id,
+                                'listing_id' => $listing->id,
+                                'parent_id' => $subcomment->id
+                            ]);
+                        }
+                }
+            }
         }
-        
+
+
+
         // Listing::create([
         //     'title' => 'Laravel Senior Developer', 
         //     'tags' => 'laravel, javascript',

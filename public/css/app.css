@@ -349,3 +349,30 @@ main section.comment-module ul li ul {
         width: calc(100% - 50px);
     }
 }
+.comment-flex{
+    margin-top: 10px;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 50%;
+}
+.flex-comment-button{
+    min-height: 50px;
+    background-color: #3B5998;
+    color: white;
+    padding: 2px;
+    margin-left: 5px;    
+}
+.flex-comment-text{
+    flex: 1;
+}
+.own-comment{
+    margin-top: 10
+}
+.half-screen-width {
+    width: 70vw !important; /* Using !important to override any other inherited width properties */
+}
+.reply-elem{
+    display: none;
+}

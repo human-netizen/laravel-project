@@ -55,5 +55,12 @@
             </button>
         </form>
     </x-card>
-    <x-comment-card :comments="$listing->comments"/>
+    <div class = "own-comment">
+        <p1>Write a Comment</p1><br>
+        <div class="comment-flex">
+            <textarea id="myTextarea" rows="4" class="flex-comment-text"></textarea>
+            <button id="myButton" class="flex-comment-button">Comment</button>
+        </div>
+    </div>
+    <x-comment-card :comments="$listing->comments" />
 @endsection

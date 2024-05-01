@@ -33,31 +33,43 @@ class CommentHelper
                                     <span></span>
                                 </div>
                             </div>
-                            <div class="comment-reply">
-                                <a href="#!">Reply</a>
+                            <div>
+                                <button class="comment-reply" id="' .$comment->id. 'commentBtn"> Reply</button>
                             </div>
                             <div class="comment-report">
                                 <a href="#!">Report</a>
                             </div>
+                            
                         </div>
+                        
                     </div>
+                    
                 </div>
+                
             ';
             return $html;
        
     
     }
+
     
     public static function rec($comment){
-        $curr = '<li>' . self::commentMakerFun($comment);
-        if($comment->subcomments->isNotEmpty()){
-            $curr .= '<ul>';
+        $curr = '<li class="commentli">' . self::commentMakerFun($comment);
+        $curr .= '<ul>';
+        $curr .= '<div class = "own-comment half-screen-width reply-elem">
+        <p1>Write a Comment</p1><br>
+        <div class="comment-flex">
+            <textarea id="myTextarea" rows="4" class="flex-comment-text"></textarea>
+            <button id="myButton" class="flex-comment-button">Comment</button>
+        </div>
+    </div>';
+        if($comment->subcomments->isNotEmpty()){            
                 $subcomments = $comment->subcomments;
                 foreach($subcomments as $subcomment) {
                     $curr .= self::rec($subcomment);
                 }
+            }
             $curr .= '</ul>';
-        }
         $curr .= '</li>';
         return $curr;
     }

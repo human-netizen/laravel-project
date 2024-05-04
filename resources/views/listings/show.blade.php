@@ -55,12 +55,18 @@
             </button>
         </form>
     </x-card>
+    
+    <form method="POST" action="/commentStore">
+        @csrf
     <div class = "own-comment">
         <p1>Write a Comment</p1><br>
         <div class="comment-flex">
-            <textarea id="myTextarea" rows="4" class="flex-comment-text"></textarea>
-            <button id="myButton" class="flex-comment-button">Comment</button>
+            <textarea id="myTextarea" name="content" rows="4" class="flex-comment-text"></textarea>
+            <button type="submit" class="flex-comment-button">Comment</button>
+            <input type="hidden" name="listing_id" value="{{$listing->id}}">
         </div>
     </div>
-    <x-comment-card :comments="$listing->comments" />
+    </form>
+    
+    <x-comment-card :comments="$listing->comments" :listing="$listing" />
 @endsection

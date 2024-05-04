@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\ListingController;
 Route::get('/', [ListingController::class , 'index']);
 Route::get('/listings/create' , [ListingController::class , 'create'])->middleware('auth');
 Route::post('/listings' , [ListingController::class , 'store'])->middleware('auth');
+Route::post('/commentStore' , [CommentController::class , 'store'])->middleware('auth');
 Route::get('/listings/{listing}/edit' , [ListingController::class , 'edit'])->middleware('auth');
 Route::put('/listings/{listing}' , [ListingController::class  , 'update'])->middleware('auth');
 Route::delete('/listings/{listing}' , [ListingController::class , 'destroy'])->middleware('auth');

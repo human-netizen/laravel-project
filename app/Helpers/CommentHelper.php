@@ -53,20 +53,28 @@ class CommentHelper
     }
 
     
-    public static function rec($comment){
+    public static function rec($comment , $listing){
+        
         $curr = '<li class="commentli">' . self::commentMakerFun($comment);
         $curr .= '<ul>';
-        $curr .= '<div class = "own-comment half-screen-width reply-elem">
+        $curr .= '<form method="POST" action="/commentStore" class="reply-elem half-width-screen">';
+        $curr .= csrf_field();
+    $curr .= '
+    <div class = "own-comment half-screen-width">
         <p1>Write a Comment</p1><br>
         <div class="comment-flex">
-            <textarea id="myTextarea" rows="4" class="flex-comment-text"></textarea>
+            <textarea name="content" rows="4" class="flex-comment-text"></textarea>
+            <input type="hidden" name="listing_id" value="'.$listing->id.'">
+            <input type="hidden" name="parent_id" value="'.$comment->id.'">
             <button id="myButton" class="flex-comment-button">Comment</button>
         </div>
-    </div>';
+    </div>
+</form>';
+
         if($comment->subcomments->isNotEmpty()){            
                 $subcomments = $comment->subcomments;
                 foreach($subcomments as $subcomment) {
-                    $curr .= self::rec($subcomment);
+                    $curr .= self::rec($subcomment , $listing);
                 }
             }
             $curr .= '</ul>';

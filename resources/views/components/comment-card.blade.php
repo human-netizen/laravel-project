@@ -1,4 +1,4 @@
-@props(['comments'])
+@props(['comments' , 'listing'])
 @php
 
     $curr = '';
@@ -8,7 +8,7 @@
 
     <ul>
         @foreach ($comments as $comment)
-            {!! \App\Helpers\CommentHelper::rec($comment) !!}
+            {!! \App\Helpers\CommentHelper::rec($comment , $listing) !!}
         @endforeach
 
     </ul>
@@ -29,13 +29,15 @@
     commentReply.forEach(reply => {
         var button = reply.querySelector('button');
         button.addEventListener('click', function() {
+        
             // Do something when the button is clicked
-            var ulelem = reply.querySelector('ul');
+            
+            var ulelem = reply.querySelector('.reply-elem');
             console.log(ulelem.innerHTML);
-            if(ulelem.firstChild.style.display != "block")ulelem.firstChild.style.display = "block";
-            else ulelem.firstChild.style.display = "none";
+            if(ulelem.style.display != "block")ulelem.style.display = "block";
+            else ulelem.style.display = "none";
 
-            console.log(ulelem.firstChild.style.display);
+            console.log(ulelem.style.display);
         });
     });
 

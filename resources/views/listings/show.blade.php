@@ -10,7 +10,7 @@
         <i class="fa-solid fa-arrow-left"></i> Back
     </a>
     <div class="mx-auto" style="width:95%">
-        <div class="bg-darkGrey border border-gray-700 p-10 rounded-lg shadow-lg">
+        <div class="border border-gray-700 p-10 rounded-lg shadow-lg">
             <div class="flex flex-col items-center justify-center text-center">
                 <img class="w-48 mr-6 mb-6"
                     src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png') }}"

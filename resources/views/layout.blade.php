@@ -48,28 +48,81 @@
     <title>LaraGigs | Find Laravel Jobs & Projects</title>
 </head>
 
-<body class="bg-coolGrey text-midGray mb-48">  <!-- Adjusted text color to midGray -->
-    <nav class="flex justify-between items-center py-4 px-6 border-b border-darkGrey">
+<body>  <!-- Adjusted text color to midGray -->
+    <nav class="navibar">
         <div class="logo"></div>
         @auth
-            <ul class="flex space-x-6 mr-6 text-lg">
+            <ul class="layoutul">
                 <li>
                     <span class="font-bold uppercase">Welcome {{ auth()->user()->name }}</span>
                 </li>
                 <li>
-                    <a href="/listings/manage" class="bg-darkGrey text-white py-1 px-3 rounded hover:bg-hoverGray">  <!-- Adjusted text and hover colors -->
+                    <a href="/listings/manage" class="btn">  <!-- Adjusted text and hover colors -->
                         <i class="fa-solid fa-gear"></i> Manage
                     </a>
                 </li>
                 <li>
                     <form action="/logout" method="POST">
                         @csrf
-                        <button class="bg-darkGrey text-white py-1 px-3 rounded hover:bg-hoverGray">  <!-- Adjusted hover color -->
-                            <i class="fa-solid fa-door-closed"></i> Logout
+                        <button class="btn">  <!-- Adjusted hover color -->
+                            <div class="aclass">
+                                <i class="fa-solid fa-door-closed"></i> 
+                            Logout
+                        </div>
                         </button>
                     </form>
                 </li>
             </ul>
+            <div class="icon" onclick="toggleNotifi()">
+                <img src="images/bell.png" alt=""> <span>17</span>
+            </div>
+            <div class="notibar"> 
+
+            
+            <div class="notifi-box" id="box">
+                <h2>Notifications <span>17</span></h2>
+                <div class="notifi-item">
+                    <img src="images/avatar1.png" alt="img">
+                    <div class="text">
+                       <h4>Elias Abdurrahman</h4>
+                       <p>@lorem ipsum dolor sit amet</p>
+                    </div> 
+                </div>
+    
+                <div class="notifi-item">
+                    <img src="images/avatar2.png" alt="img">
+                    <div class="text">
+                       <h4>John Doe</h4>
+                       <p>@lorem ipsum dolor sit amet</p>
+                    </div> 
+                </div>
+    
+                <div class="notifi-item">
+                    <img src="images/avatar3.png" alt="img">
+                    <div class="text">
+                       <h4>Emad Ali</h4>
+                       <p>@lorem ipsum dolor sit amet</p>
+                    </div> 
+                </div>
+    
+                <div class="notifi-item">
+                    <img src="images/avatar4.png" alt="img">
+                    <div class="text">
+                       <h4>Ekram Abu </h4>
+                       <p>@lorem ipsum dolor sit amet</p>
+                    </div> 
+                </div>
+    
+                <div class="notifi-item">
+                    <img src="images/avatar5.png" alt="img">
+                    <div class="text">
+                       <h4>Jane Doe</h4>
+                       <p>@lorem ipsum dolor sit amet</p>
+                    </div> 
+                </div>
+            </div>
+    
+            </div>
         @else
             <ul class="flex space-x-6 mr-6 text-lg">
                 <li>
@@ -92,9 +145,8 @@
         <p class="text-center flex-1">Copyright &copy; 2022, All Rights Reserved</p>
         <a href="/listings/create" class="bg-darkGrey text-white py-2 px-5 hover:bg-hoverGray">Post Job</a>
     </footer>
-    <script>
-       
-    </script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
     
 </body>
 

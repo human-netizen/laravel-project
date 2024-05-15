@@ -9,7 +9,7 @@
     <a href="index.html" class="inline-block text-gray-200 ml-4 mb-4 hover:text-gray-50">
         <i class="fa-solid fa-arrow-left"></i> Back
     </a>
-    <div class="mx-auto" style="width:95%">
+    <div class="mx-auto md:w-3/4" >
         <div class="border border-gray-700 p-10 rounded-lg shadow-lg">
             <div class="flex flex-col items-center justify-center text-center">
                 <img class="w-48 mr-6 mb-6"
@@ -25,7 +25,10 @@
 
             <div class="text-lg space-y-6">
                 <div class="text-gray-200 ck-content" style="text-align: left; align-self: start; width: 100%;">
-                    {!! $listing->description !!}
+                    <div class="remove-all">
+                        {!! $listing->description !!}    
+                    </div>
+                    
                 </div>
 
 
@@ -42,7 +45,7 @@
         </div>
     </div>
 
-    <x-card class="mt-4 p-2 flex space-x-6 bg-gray-800 text-white">
+    <x-card class="mt-4 p-2 flex space-x-6 bg-gray-800 text-white md:w-3/4 mx-auto">
         <a href="/listings/{{ $listing->id }}/edit" class="hover:text-gray-200">
             <i class="fa-solid fa-pencil"></i> Edit
         </a>
@@ -55,18 +58,19 @@
             </button>
         </form>
     </x-card>
-    
-    <form method="POST" action="/commentStore">
-        @csrf
-    <div class = "own-comment">
-        <p1>Write a Comment</p1><br>
-        <div class="comment-flex">
-            <textarea id="myTextarea" name="content" rows="4" class="flex-comment-text"></textarea>
-            <button type="submit" class="flex-comment-button">Comment</button>
-            <input type="hidden" name="listing_id" value="{{$listing->id}}">
-        </div>
+    <div class="border border-gray-200 p-10 rounded md:w-3/4  mx-auto mt-10">
+        <form method="POST" action="/commentStore">
+            @csrf
+            <div class = "own-comment ">
+                <p1>Write a Comment</p1><br>
+                <div class="comment-flex">
+                    <textarea id="myTextarea" name="content" rows="4" class="flex-comment-text"></textarea>
+                    <button type="submit" class="flex-comment-button">Comment</button>
+                    <input type="hidden" name="listing_id" value="{{ $listing->id }}">
+                </div>
+            </div>
+        </form>
+
+        <x-comment-card :comments="$listing->comments" :listing="$listing" />
     </div>
-    </form>
-    
-    <x-comment-card :comments="$listing->comments" :listing="$listing" />
 @endsection

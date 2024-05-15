@@ -28,4 +28,5 @@ class Listing extends Model
         return $this->hasMany(Comment::class)->whereNull('parent_id');  // Only retrieves top-level comments
     }
     
+    
 }

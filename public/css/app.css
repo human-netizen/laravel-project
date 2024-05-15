@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 :root {
     --ff: "Montserrat", sans-serif;
-    --colorbody: #fff;
+    --colorbody: #1e1e1e;
     --colora: #537fe7;
     --colora2: #ffe537;
-    --colorp: #1e1e1e;
-    --colorp2: #333;
-    --colors: #f2f2f2;
+    --colorp: #fff;
+    --colorp2: #f2f2f2
+    --colors: #333;
 
     --gradient: linear-gradient(45deg, var(--colora) 0%, var(--colora2) 100%);
 
@@ -80,51 +80,51 @@
     margin: 20px auto;
 }
 /* Targeting the CKEditor content area */
-.ck-content h2 {
-    font-size: 32px; /* Equivalent to 2rem if base size is 16px */
+/* .ck-content h2 {
+    font-size: 32px; 
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
 .ck-content h3 {
-    font-size: 24px; /* 1.5rem */
+    font-size: 24px; 
     font-weight: bold;
     margin-top: 18px;
     margin-bottom: 9px;
 }
 
 .ck-content h4 {
-    font-size: 20px; /* 1.25rem */
+    font-size: 20px; 
     font-weight: bold;
     margin-top: 16px;
     margin-bottom: 8px;
 }
 
 .ck-content p {
-    font-size: 16px; /* 1rem */
-    margin-bottom: 16px; /* 1rem */
-    line-height: 1.5; /* Tailwind's leading-loose */
+    font-size: 16px; 
+    margin-bottom: 16px; 
+    line-height: 1.5; 
 }
 
 .ck-content ul {
-    list-style-type: disc; /* Ensures that bullets are shown */
+    list-style-type: disc; 
 
     margin-bottom: 16px;
 }
 
 .ck-content ol {
-    list-style-type: decimal; /* Ensures numbered lists */
-    padding-left: 20px; /* Adjust as needed for indentation */
+    list-style-type: decimal; 
+    padding-left: 20px; 
     margin-bottom: 16px;
 }
 
 .ck-content li {
-    margin-bottom: 4px; /* Smaller space between list items */
+    margin-bottom: 4px;
 }
 
 .ck-content a {
-    color: #065f46; /* Example of a Tailwind color 'teal-700' */
+    color: #065f46; 
     text-decoration: underline;
 }
 
@@ -135,14 +135,14 @@
 
 .ck-content th,
 .ck-content td {
-    border: 1px solid #ddd; /* Light gray border */
-    padding: 8px; /* Padding inside cells */
+    border: 1px solid #ddd; 
+    padding: 8px; 
 }
 
 .ck-content th {
-    background-color: #f3f4f6; /* Tailwind gray-100 for header background */
+    background-color: #f3f4f6; 
     font-weight: bold;
-}
+} */
 
 
 header {
@@ -173,11 +173,23 @@ body {
     color: var(--colorp);
     transition: var(--transition);
 }
+.ck {
+    background-color: var(--colorbody) !important;
+}
+.ck-button{
+    color: var(--colorp) !important;
 
+}
+input{
+    background-color: var(--colorbody);
+}
 a {
     text-decoration: none;
     color: var(--colorp);
     font: var(--links);
+}
+.btn{
+    color: var(--colorp) !important;
 }
 
 .btn , .btn2{
@@ -195,7 +207,7 @@ a {
 .btn2{
     background: linear-gradient(var(--colorp), var(--colorp)) padding-box,
     linear-gradient(45deg, var(--colora) 0%, var(--colora2) 100%) border-box;
-    color:white;
+    color: var(--colorbody) !important;
     
 }
 
@@ -335,9 +347,9 @@ video {
 }
 
 main section.comment-module {
-    width: 50%;
+    
     height: auto;
-    background: #fff;
+    background: var(--colorp2);
     margin: 100px 0px;
     border-radius: 5px;
     padding: 50px 75px;
@@ -564,7 +576,7 @@ main section.comment-module ul li ul {
     align-content: flex-start;
     flex-wrap: wrap;
     align-items: flex-start;
-    width: 50%;
+    color: var(--colorbody);
 }
 .flex-comment-button {
     min-height: 50px;
@@ -574,7 +586,16 @@ main section.comment-module ul li ul {
     margin-left: 5px;
 }
 .flex-comment-text {
-    flex: 1;
+    flex-grow: 1;
+    padding: 10px;
+    background-color: var(--colorbody); /* Dark background color for the textarea */
+    border: 2px solid #4CAF50; /* Custom border color */
+    border-radius: 8px; /* Rounded corners */
+    color: #ffffff; /* Text color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow effect */
+    resize: none; /* Optional: Disable resizing */
+    font-family: Arial, sans-serif; /* Custom font */
+    font-size: 16px; /* Custom font size */
 }
 .own-comment {
     margin-top: 10;
@@ -704,3 +725,100 @@ main section.comment-module ul li ul {
 }
 
 
+.container{
+    background-color: #000;
+}
+#textria{
+    border-bottom: 1px solid blue;
+    padding: 10px;
+}
+#search{
+    text-decoration: none;
+}
+.twostates{
+    display: flex;
+}
+.wrapper {
+    margin-left: 100px;
+    display: flex;
+    flex-wrap: wrap;
+     /* Centers and distributes space between profiles */
+    align-items: center; /* Aligns items at the start of the flex container */
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100vh;
+    background: #000;
+    width: 100%;
+}
+
+.profile {
+    position: relative;
+    width: 250px;
+    height: 300px;
+    background: url("/images/user1.jpg");
+    background-size: cover;
+    cursor: pointer;
+    border-top-right-radius: 35px;
+    border-radius: 6px;
+    margin: 20px;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    border-top-right-radius: 35px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 1s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile:hover .overlay {
+    opacity: 1;
+}
+
+.social-icons {
+    list-style: none;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the social icons horizontally */
+    display: flex;
+    padding: 0;
+}
+
+.social-icons li {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 5px;
+    transition: all 1s ease;
+}
+
+.social-icons li:hover {
+    background: #fff;
+    color: #000;
+}
+
+.overlay .about {
+    position: absolute;
+    top: 40%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Ensures full width of the overlay */
+}

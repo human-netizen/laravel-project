@@ -1,12 +1,12 @@
 @extends('layout')
 @section('content')
-    <div class="bg-gray-50 border border-gray-200 p-10 rounded md:w-1/2 mx-auto mt-24">
-        <header class="text-center">
-            <h2 class="text-2xl font-bold uppercase mb-1">
+    <div class="border border-gray-200 p-10 rounded md:w-1/2 mx-auto mt-24">
+        <header class="mx-auto">
+            <h2 class="text-2xl font-bold uppercase mb-1 mx-auto">
                 Create a Gig
             </h2>
-            <p class="mb-4">Post a gig to find a developer</p>
         </header>
+        <p class="mb-4">Post a gig to find a developer</p>
 
         <form method="POST" action="/listings" enctype="multipart/form-data">
             @csrf

@@ -11,6 +11,12 @@ class UserController extends Controller
     public function create(){
         return view('users.register');
     }
+    public function userList(){
+        //dd(User::all());
+        return view('users.userlist', [
+            'userlists' => User::all()//->filter(request(['tags', 'search']))->paginate(4)
+        ]);
+    }
     public function store(Request $request){
         $formField = $request->validate([
             'name' => 'required|min:3' ,

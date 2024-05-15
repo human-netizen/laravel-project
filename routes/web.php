@@ -35,6 +35,7 @@ Route::get('/judgeme' , [JudgeController::class , 'index']);
 Route::get('judge/sample' , function (){
     return view('judge.sample');
 });
+Route::get('userlist' , [UserController::class , 'userList']);
 //Route::get('/show-file', 'App\Http\Controllers\FileController@showFileContent');
 Route::get('/getFileContents', 'App\Http\Controllers\FileController@showFileContent');
 

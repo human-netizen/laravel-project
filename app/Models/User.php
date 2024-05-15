@@ -44,4 +44,7 @@ class User extends Authenticatable
     public function listing(){
         return $this->hasMany(Listing::class , 'user_id');
     }
+    public function notifications(){
+        return $this->hasMany(Notification::class , 'to_id');
+    }
 }

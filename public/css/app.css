@@ -1,3 +1,5 @@
+
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 :root {
     --ff: "Montserrat", sans-serif;
@@ -28,6 +30,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Rubik", sans-serif;
+}
+.no-tailwind {
+    all: unset;
 }
 * ul {
     list-style: none;
@@ -264,8 +269,9 @@ h1 {
 }
 h2 {
     font: var(--h2);
+    
 }
-body h3 {
+ h3 {
     font: var(--h3);
 }
 .p2 {
@@ -335,7 +341,7 @@ video {
   width: 100%;
   border-radius: 10px;
   box-shadow: var(--shadow);
-  height: 370px;
+
 }
 .section > img {
   margin: 20px 0px;

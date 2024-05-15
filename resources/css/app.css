@@ -1,36 +1,4 @@
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-left: -15px;
-    margin-right: -15px;
-}
-
-/* Additional styling for Bootstrap Badge Colors */
-.badge-fancy {
-    padding: 8px 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-     /* Add margin between badges */
-}
-.badge-success-fancy {
-    background-color: #28a745;
-    color: white;
-}
-.badge-danger-fancy {
-    background-color: #dc3545;
-    color: white;
-}
-/* Optional: Additional hover effect */
-.badge-fancy:hover {
-    opacity: 0.8;
-}
-.card-body{
-    display: flex;
-    flex-direction: column;
-    
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 

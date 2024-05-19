@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['content', 'is_read' , 'to_id' , 'from_id'];
+    protected $fillable = ['title' , 'author' , 'content'];
+    public $timestamps = false;
 }

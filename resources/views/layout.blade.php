@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8" />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" />
     <script src="https://unpkg.com/alpinejs" defer></script>
-  @vite('resources/css/app.css')
+    @vite('resources/css/app.css')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
@@ -29,33 +29,22 @@
 
 
     <link src="css/app.css" rel="stylesheet">
-
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
-        tailwind.config = {
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
 
-            theme: {
-                extend: {
-                    colors: {
-                        deepBlack: "#121212",
-                        coolGrey: "#242424",
-                        darkGrey: "#2D2D2D",
-                        midGray: "#636363", // Changed from lightGray to midGray for better contrast
-                        hoverGray: "#959595" // Darker hover color for better readability
-                    },
-                    fontFamily: {
-                        sans: ['UI Display', 'system-ui'],
-                        serif: ['Editorial', 'Georgia'],
-                        mono: ['UI Mono', 'SFMono-Regular'],
-                    }
-                },
-            },
-            plugins: [
-                require('@tailwindcss/typography'),
-                // ...
-            ],
-            // Other configurations...
-        };
+        var pusher = new Pusher('6afc5d0d3b3bb91db423', {
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+            alert(JSON.stringify(data));
+        });
     </script>
+
+    <script></script>
     <title>LaraGigs | Find Laravel Jobs & Projects</title>
 </head>
 
@@ -64,7 +53,7 @@
         <div class="logo"></div>
         @auth
             <ul class="layoutul">
-                <li>
+                <li class="flex justify-center items-center">
                     <span class="font-bold uppercase">Welcome {{ auth()->user()->name }}</span>
                 </li>
                 <li>
@@ -84,53 +73,37 @@
                     </form>
                 </li>
             </ul>
+            @php
+            $notifications = Auth::user()->notifications;
+        @endphp
             <div class="icon" onclick="toggleNotifi()">
-                <img src="/images/bell.png" alt=""> <span>17</span>
+                <img src="/images/bell.png" alt=""> <span>{{$notifications->count()}}</span>
             </div>
+            
+
             <div class="notibar">
-
-
                 <div class="notifi-box" id="box">
-                    <h2>Notifications <span>17</span></h2>
-                    <div class="notifi-item">
-                        <img src="/images/avatar1.png" alt="img">
-                        <div class="text">
-                            <h4>Elias Abdurrahman</h4>
-                            <p>@lorem ipsum dolor sit amet</p>
+                    <h2>Notifications <span>{{$notifications->count()}}</span></h2>
+                    
+                    @foreach($notifications as $notification)
+                        @php
+                            $from = app\Models\User::find($notification->from_id)->name;
+                        @endphp
+                        <div class="notifi-item">
+                            <img src="/images/avatar1.png" alt="img">
+                            <div class="text">
+                                <h4>{{$from}}</h4>
+                                <p>{{$notification->content}}</p>
+                                <div class="flex gap-4">
+                                    <button>Accept</button>
+                                    <button>Reject</button>
+                                </div>
+                            </div>
+                            
                         </div>
-                    </div>
+                    @endforeach
 
-                    <div class="notifi-item">
-                        <img src="/images/avatar2.png" alt="img">
-                        <div class="text">
-                            <h4>John Doe</h4>
-                            <p>@lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
 
-                    <div class="notifi-item">
-                        <img src="/images/avatar3.png" alt="img">
-                        <div class="text">
-                            <h4>Emad Ali</h4>
-                            <p>@lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
-
-                    <div class="notifi-item">
-                        <img src="/images/avatar4.png" alt="img">
-                        <div class="text">
-                            <h4>Ekram Abu </h4>
-                            <p>@lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
-
-                    <div class="notifi-item">
-                        <img src="/images/avatar5.png" alt="img">
-                        <div class="text">
-                            <h4>Jane Doe</h4>
-                            <p>@lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
                 </div>
 
             </div>

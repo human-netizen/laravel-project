@@ -21,6 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'profile_image',
+        'cover_photo',
+        'hometown',
+        'relationship_status',
+        'followers_count',
+        'following_count',
     ];
 
     /**
@@ -41,10 +48,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function listing(){
-        return $this->hasMany(Listing::class , 'user_id');
+    public function listing()
+    {
+        return $this->hasMany(Listing::class, 'user_id');
     }
-    public function notifications(){
-        return $this->hasMany(Notification::class , 'to_id');
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'to_id');
+    }
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+    public function isFollowing($user)
+    {
+        return $this->following()->where('user_id', $user->id)->exists();
     }
 }

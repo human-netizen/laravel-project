@@ -206,14 +206,26 @@ a {
     padding: 12px 24px;
     transition: 0.2s ease-in-out;
     text-align: center;
-    margin-top: 20px;
+    
 }
+.navibar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* height: auto; Ensure it only takes the height of its content */
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    background-color: var(--colorbody); /* Optional: Set a background color if needed */
+}
+
 
 .btn2{
     background: linear-gradient(var(--colorp), var(--colorp)) padding-box,
     linear-gradient(45deg, var(--colora) 0%, var(--colora2) 100%) border-box;
-    color: var(--colorbody) !important;
-    
+    color: var(--colorbody) !important;    
 }
 
 .btn:hover {
@@ -224,6 +236,10 @@ a {
     border: solid 2px var(--colorp);
     color: white;
     scale: 1.05;
+}
+.btn3{
+    background: linear-gradient(var(--colorbody), var(--colorbody)) padding-box,
+    linear-gradient(45deg, var(--colorp) 0%, var(--colorp) 100%) border-box !important;
 }
 .two-cta {
     display: flex;
@@ -252,8 +268,7 @@ h3,
     padding: 0px;
 }
 p {
-    font: var(--p) ;
-    margin: 10px 0px;
+    
     padding: 0px;
 }
 .p1 {
@@ -280,7 +295,7 @@ h2 {
 p,
 ul,
 ol {
-    font: var(--p);
+    
 }
 .links {
     font: var(--links);
@@ -338,7 +353,7 @@ body .hero h1 {
 }
 img,
 video {
-  width: 100%;
+  
   border-radius: 10px;
   box-shadow: var(--shadow);
 
@@ -591,17 +606,20 @@ main section.comment-module ul li ul {
     padding: 2px;
     margin-left: 5px;
 }
-.flex-comment-text {
-    flex-grow: 1;
-    padding: 10px;
+textarea , input{
+    margin-right: 0px;
+    padding: 4px;
     background-color: var(--colorbody); /* Dark background color for the textarea */
     border: 2px solid #4CAF50; /* Custom border color */
     border-radius: 8px; /* Rounded corners */
-    color: #ffffff; /* Text color */
+    color: var(--colorp); /* Text color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow effect */
     resize: none; /* Optional: Disable resizing */
     font-family: Arial, sans-serif; /* Custom font */
     font-size: 16px; /* Custom font size */
+}
+.flex-comment-text{
+    flex-grow: 1;
 }
 .own-comment {
     margin-top: 10;
@@ -690,7 +708,7 @@ main section.comment-module ul li ul {
     font-size: 12px ;
 }
 .navibar {
-    position: relative;
+    
     border-bottom: 1px solid;
 }
 
@@ -699,17 +717,16 @@ main section.comment-module ul li ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1rem; /* Equivalent to 4 in Tailwind */
-    padding-bottom: 1rem; /* Equivalent to 4 in Tailwind */
-    padding-left: 1.5rem; /* Equivalent to 6 in Tailwind */
-    padding-right: 1.5rem; /* Equivalent to 6 in Tailwind */
+
 }
 .layoutul{
     display: flex; /* Applies flexbox layout */
     gap: 1.5rem; /* Adjust as needed for the desired space between flex items */
     margin-right: 1.5rem; /* Adjust as needed */
     font-size: 1.125rem; /* Adjust as needed for the desired font size */
+    
 }
+
 .font-bold {
     font-weight: bold;
 }
@@ -732,7 +749,7 @@ main section.comment-module ul li ul {
 
 
 .container{
-    background-color: #000;
+    background-color: var(--colorbody);
 }
 #textria{
     border-bottom: 1px solid blue;
@@ -762,7 +779,6 @@ main section.comment-module ul li ul {
     position: relative;
     width: 250px;
     height: 300px;
-    background: url("/images/user1.jpg");
     background-size: cover;
     cursor: pointer;
     border-top-right-radius: 35px;
@@ -828,3 +844,61 @@ main section.comment-module ul li ul {
     justify-content: center;
     width: 100%; /* Ensures full width of the overlay */
 }
+button {
+    background-color: var(--colora);
+    color: var(--colorp);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    outline: none;
+}
+button:hover {
+
+    color: var(--colorbody);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+.dark-mode-button:active {
+    background-color: var(--colorp2);
+    color: var(--colorbody);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+}
+.header, .pagination a, .pagination span {
+    background-color: var(--colorbody);
+    color: var(--colorp);
+}
+
+.problem-card {
+    background-color: var(--colorbody);
+    color: var(--colorp);
+}
+
+.submit-button, .search-button {
+    background-color: var(--colora);
+    color: var(--colorp);
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover, .search-button:hover {
+    background-color: var(--colora2);
+}
+
+
+.form-input {
+    background-color: var(--colorp2);
+    color: var(--colors);
+}
+.fancy-border {
+    position: relative;
+    padding: 20px;
+    color: var(--colors);
+    border: 2px solid;
+    border-image: linear-gradient(45deg, var(--colora), var(--colora2), var(--colors)) 1;
+}
+
+

@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
+    <div class="border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
                 Register
@@ -8,7 +8,7 @@
             <p class="mb-4">Create an account to post gigs</p>
         </header>
 
-        <form method="POST" action="/users">
+        <form method="POST" action="/users" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
                 <label for="name" class="inline-block text-lg mb-2">
@@ -19,6 +19,14 @@
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p> 
                 @enderror
                 
+            </div>
+            <div class="mb-6">
+                <label for="username" class="inline-block text-lg mb-2">Username</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="username" />
+                <!-- Error Example -->
+                @error('username')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p> 
+            @enderror
             </div>
 
             <div class="mb-6">
@@ -48,6 +56,13 @@
                 @error('password_confirmation')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p> 
             @enderror
+            </div>
+
+            <div class="mb-6">
+                <label for="profile_image" class="inline-block text-lg mb-2">
+                    Profile Picture: 
+                </label>
+                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="profile_image" />
             </div>
 
             <div class="mb-6">

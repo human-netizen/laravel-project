@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Test;
 use App\Models\User;
 use App\Models\Listing;
+use App\Models\Notification;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -61,6 +62,13 @@ class DatabaseSeeder extends Seeder
                 }
             }
         }
+        foreach(range(1 , 100) as $index){
+            Notification::factory()->create([
+                'to_id' => $users->random(),
+                'from_id' => $users->random()
+            ]);
+        }
+
 
 
 

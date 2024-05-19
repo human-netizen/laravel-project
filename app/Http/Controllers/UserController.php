@@ -21,6 +21,7 @@ class UserController extends Controller
         $formField = $request->validate([
             'name' => 'required|min:3' ,
             'email' => 'required|email' , 
+            'username' => 'required' ,
             'password' => 'required|min:6|confirmed'
         ]);
 

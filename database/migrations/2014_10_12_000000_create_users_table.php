@@ -17,9 +17,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('username')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('profile_image')->nullable();
+            $table->string('cover_photo')->nullable();
+            $table->string('hometown')->nullable();
+            $table->string('relationship_status')->nullable();
+            $table->integer('followers_count')->default(0);
+            $table->integer('following_count')->default(0);
             $table->timestamps();
         });
     }

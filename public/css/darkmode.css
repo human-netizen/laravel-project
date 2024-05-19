@@ -1,0 +1,129 @@
+body {
+    background-color: #1e1e1e;
+    color: #f2f2f2;
+  }
+  
+  .navbar {
+    background-color: #333 !important;
+    color: #fff;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, .5), 0 7px 10px -5px rgba(0, 0, 0, .7);
+  }
+  
+  .navbar .navbar-brand, .navbar .navbar-nav .nav-item .nav-link {
+    color: #f2f2f2;
+  }
+  
+  .navbar .navbar-nav .nav-item .nav-link:hover {
+    background-color: #555;
+  }
+  
+  .navbar .navbar-toggler .navbar-toggler-icon {
+    background-color: #f2f2f2;
+  }
+  
+  .page-header.header-filter {
+    background-color: #333;
+  }
+  
+  .header-filter:before {
+    background: rgba(0, 0, 0, .7);
+  }
+  
+  .main-raised {
+    background-color: #2e2e2e;
+    color: #f2f2f2;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .7), 0 6px 30px 5px rgba(0, 0, 0, .6), 0 8px 10px -5px rgba(0, 0, 0, .8);
+  }
+  
+  .profile-page .profile .name {
+    color: #fff;
+  }
+  
+  .profile-page .description {
+    color: #ccc;
+  }
+  
+  .profile-page .profile-tabs .nav-link {
+    color: #fff;
+    background-color: #444;
+  }
+  
+  .profile-page .profile-tabs .nav-link.active {
+    background-color: #537fe7;
+  }
+  
+  .profile-page .tab-content {
+    background-color: #2e2e2e;
+    color: #f2f2f2;
+  }
+  
+  .card {
+    background-color: #333;
+    color: #f2f2f2;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .6), 0 3px 1px -2px rgba(0, 0, 0, .7), 0 1px 5px 0 rgba(0, 0, 0, .8);
+  }
+  
+  .card-title, .card-description, .card-category {
+    color: #fff;
+  }
+  
+  .badge {
+    color: #333;
+  }
+  
+  .btn {
+    background-color: #537fe7;
+    color: #fff;
+  }
+  
+  .btn:hover {
+    background-color: #3a5ab4;
+    box-shadow: 0 14px 26px -12px rgba(83, 127, 231, .6), 0 4px 23px 0 rgba(0, 0, 0, .3), 0 8px 10px -5px rgba(83, 127, 231, .5);
+  }
+  
+  .btn-fab {
+    background-color: #537fe7;
+    color: #fff;
+  }
+  
+  .btn-fab:hover {
+    background-color: #3a5ab4;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #333;
+    color: #f2f2f2;
+  }
+  
+  footer p a {
+    color: #537fe7;
+  }
+  
+  footer p a:hover {
+    color: #3a5ab4;
+  }
+  
+  /* Social buttons */
+  .btn.btn-dribbble.btn-link {
+    color: #ea4c89;
+  }
+  
+  .btn.btn-twitter.btn-link {
+    color: #55acee;
+  }
+  
+  .btn.btn-pinterest.btn-link {
+    color: #cc2127;
+  }
+  
+  /* Ensure all text remains visible and accessible */
+  h1, h2, h3, h4, h5, h6, p {
+    color: #f2f2f2;
+  }
+  
+  /* Adjust other elements as needed */
+  .navbar-collapse {
+    background-color: #333;
+  }
+  

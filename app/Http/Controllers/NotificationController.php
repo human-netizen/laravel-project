@@ -11,7 +11,10 @@ class NotificationController extends Controller
         $request->validate([
             'to_id' => 'required',
             'from_id' => 'required',
-            'content' => 'required'
+            'battle_id' => 'required',
+            'contest_id' => 'required',
+            'index' => 'required',
+            'problem_name' => 'required',
         ]);
         $notification = Notification::create($request->all());
         $previousPageUrl = $request->header('referer');

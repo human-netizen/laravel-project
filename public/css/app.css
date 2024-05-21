@@ -695,6 +695,7 @@ textarea , input{
 .notifi-item img {
     display: block;
     width: 50px;
+    height: 50px;
     margin-right: 10px;
     border-radius: 50%;
 }
@@ -888,8 +889,20 @@ button:hover {
     background-color: var(--colora2);
 }
 
+.submit-button, .back-button {
+    background-color: var(--colora);
+    color: var(--colorp);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-button:hover, .back-button:hover {
+    background-color: var(--colora2);
+}
 
 .form-input {
+    font-family: var(--ff);
     background-color: var(--colorp2);
     color: var(--colors);
 }
@@ -899,6 +912,68 @@ button:hover {
     color: var(--colors);
     border: 2px solid;
     border-image: linear-gradient(45deg, var(--colora), var(--colora2), var(--colors)) 1;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: var(--colors);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.edit-profile-form .form-group {
+    margin-bottom: 1.5rem;
+}
+.edit-profile-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--colorp2);
+}
+.edit-profile-form input[type="text"],
+.edit-profile-form textarea,
+.edit-profile-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--colors);
+    border-radius: 5px;
+    background-color: var(--colorbody);
+    color: var(--colorp);
+    font-size: 1rem;
+}
+.edit-profile-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="#fff" d="M2 0L0 2h4L2 0zM0 3l2 2 2-2H0z"/></svg>') no-repeat right 0.75rem center;
+    background-size: 0.65rem auto;
+    background-color: var(--colorbody);
+    color: var(--colorp);
+}
+.edit-profile-form .save-button {
+    background-color: var(--colora);
+    color: var(--colorp);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color var(--transition);
+}
+.edit-profile-form .save-button:hover {
+    background-color: var(--colora2);
 }
 
 

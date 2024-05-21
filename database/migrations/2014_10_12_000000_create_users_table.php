@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('relationship_status')->nullable();
             $table->integer('followers_count')->default(0);
             $table->integer('following_count')->default(0);
+            $table->text('bio')->nullable();
+            $table->text('location')->nullable();
+            $table->text('job')->nullable();
             $table->timestamps();
         });
     }

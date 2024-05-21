@@ -7,10 +7,10 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JudgeController;
+use App\Http\Controllers\BattleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ProblemController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SolutionController;
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +31,7 @@ Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->midd
 Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware('auth');
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
-Route::get('/register', [UserController::class, 'create'])->middleware('guest');;
-Route::post('/users', [UserController::class, 'store']);
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
 Route::get('/judgeme', [JudgeController::class, 'index']);
 Route::get('judge/sample', function () {
     return view('judge.sample');
@@ -46,8 +42,12 @@ Route::get('/getFileContents', 'App\Http\Controllers\FileController@showFileCont
 Route::get('/submit-solution', function () {
     return view('judge.cfindex');
 });
+Route::get('/submit-solution/battle/{id}', function ($id) {
+    return view('judge.cfindex' , ['id' => $id]);
+});
 
 Route::post('/submit-solution', [SolutionController::class, 'submitSolution'])->name('submitSolution');
+Route::post('/submit-solution/battle/{id}', [SolutionController::class, 'submitSolutionById'])->name('submitSolutionById');
 
 Route::get('testSocket', [TestController::class, 'test']);
 Route::view('bbb', 'checkingWebsocket');
@@ -66,13 +66,27 @@ Route::get('/send-message', function () {
     return 'Message sent';
 });
 Route::get('/problems', [ProblemController::class, 'index'])->name('problems.index');
+Route::get('/fetch-problems', [ProblemController::class, 'fetchProblems'])->name('problems.fetch');
 Route::post('/notify-user', [ProblemController::class, 'notifyUser'])->name('notify.user');
 
-Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
-Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
-Route::post('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
-Route::post('/profile/{id}/post', [ProfileController::class, 'createPost'])->name('profile.createPost')->middleware('auth');
-Route::post('/profile/{id}/follow', [ProfileController::class, 'follow'])->name('profile.follow')->middleware('auth');
-Route::post('/profile/{id}/unfollow', [ProfileController::class, 'unfollow'])->name('profile.unfollow')->middleware('auth');
+
+Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::put('/profile/update' , [UserController::class, 'update'])->name('profile.update')->middleware('auth');
+Route::get('/profile/{id}', [UserController::class, 'show'])->name('profile.show');
+
+Route::post('/profile/{id}/post', [UserController::class, 'createPost'])->name('profile.createPost')->middleware('auth');
+Route::post('/profile/{id}/follow', [UserController::class, 'follow'])->name('profile.follow')->middleware('auth');
+Route::post('/profile/{id}/unfollow', [UserController::class, 'unfollow'])->name('profile.unfollow')->middleware('auth');
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');;
+Route::post('/users', [UserController::class, 'store']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 
+
+Route::post('/battles/create', [BattleController::class, 'create'])->name('battles.create');
+Route::post('/battles/accept/{id}', [BattleController::class, 'acceptBattle'])->name('battles.accept');
+Route::post('/battles/reject/{id}', [BattleController::class, 'rejectBattle'])->name('battles.reject');
+Route::get('/battleground', [BattleController::class, 'battleground'])->name('battleground');
+Route::get('/battles/result/{id}', [BattleController::class, 'result'])->name('battles.result');

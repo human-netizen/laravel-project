@@ -27,17 +27,19 @@
     @endif
 
     <div class="grid grid-cols-1 gap-4">
+        
         @foreach ($problems as $problem)
             <div class="problem-card p-4 rounded-lg shadow-md flex justify-between items-center fancy-border">
                 <div class="flex flex-col space-y-2">
-                    <a href="https://codeforces.com/problemset/problem/{{$problem['problem']['contestId']}}/{{$problem['problem']['index']}}" class="text-xl font-bold mb-2 btn btn3 pl-2">{{ $problem['problem']['name'] }}</a>
-                    <p class="ml-2 mt-2"><strong>Contest ID:</strong> {{ $problem['problem']['contestId'] }}</p>
-                    <p class="ml-2"><strong>Index:</strong> {{ $problem['problem']['index'] }}</p>
+                    <a href="https://codeforces.com/problemset/problem/{{$problem['contestId']}}/{{$problem['index']}}" class="text-xl font-bold mb-2 btn btn3 pl-2">{{ $problem['name'] }}</a>
+                    <p class="ml-2 mt-2"><strong>Contest ID:</strong> {{ $problem['contestId'] }}</p>
+                    <p class="ml-2"><strong>Index:</strong> {{ $problem['index'] }}</p>
                 </div>
-                <form action="{{ route('notify.user') }}" method="POST" class="flex items-center space-x-2">
+                <form action="{{ route('battles.create') }}" method="POST" class="flex items-center space-x-2">
                     @csrf
-                    <input type="hidden" name="contestId" value="{{ $problem['problem']['contestId'] }}">
-                    <input type="hidden" name="index" value="{{ $problem['problem']['index'] }}">
+                    <input type="hidden" name="problem_name" value = {{ $problem['name'] }}>
+                    <input type="hidden" name="contest_id" value="{{ $problem['contestId'] }}">
+                    <input type="hidden" name="problem_index" value="{{ $problem['index'] }}">
                     <input type="text" name="username" placeholder="Username" class="form-input border border-gray-300 p-2 rounded-lg mr-3">
                     <button type="submit" class="submit-button px-4 py-2 rounded-lg">Submit</button>
                 </form>

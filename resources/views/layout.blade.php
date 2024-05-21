@@ -31,17 +31,7 @@
     <link src="css/app.css" rel="stylesheet">
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
 
-        var pusher = new Pusher('6afc5d0d3b3bb91db423', {
-            cluster: 'ap1'
-        });
-
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
-        });
     </script>
 
     <script></script>
@@ -49,7 +39,7 @@
 </head>
 
 <body> <!-- Adjusted text color to midGray -->
-    <nav class="navibar">
+    <nav class="navibar ">
         <div class="logo"></div>
         @auth
             <ul class="layoutul">
@@ -57,7 +47,7 @@
                     <span class="font-bold uppercase">Welcome {{ auth()->user()->name }}</span>
                 </li>
                 <li>
-                    <a href="/listings/manage" class="btn"> <!-- Adjusted text and hover colors -->
+                        <a href="/listings/manage" class="btn"> <!-- Adjusted text and hover colors -->
                         <i class="fa-solid fa-gear"></i> Manage
                     </a>
                 </li>
@@ -75,17 +65,24 @@
             </ul>
             @php
             $notifications = Auth::user()->notifications;
+
+            $pendingNotifications = $notifications->filter(function ($notification) {
+                $battle = \App\Models\Battle::find($notification->battle_id);
+                return $battle && $battle->status == 'pending';
+            });
+                    
         @endphp
             <div class="icon" onclick="toggleNotifi()">
-                <img src="/images/bell.png" alt=""> <span>{{$notifications->count()}}</span>
+                <img src="/images/bell.png" alt=""> <span>{{$pendingNotifications->count()}}</span>
             </div>
             
 
             <div class="notibar">
                 <div class="notifi-box" id="box">
-                    <h2>Notifications <span>{{$notifications->count()}}</span></h2>
+
+                    <h2>Notifications <span>{{$pendingNotifications->count()}}</span></h2>
                     
-                    @foreach($notifications as $notification)
+                    @foreach($pendingNotifications as $notification)
                         @php
                             $from = app\Models\User::find($notification->from_id)->name;
                         @endphp
@@ -93,10 +90,16 @@
                             <img src="/images/avatar1.png" alt="img">
                             <div class="text">
                                 <h4>{{$from}}</h4>
-                                <p>{{$notification->content}}</p>
+                                <p>{{$notification->problem_name}}</p>
                                 <div class="flex gap-4">
-                                    <button>Accept</button>
-                                    <button>Reject</button>
+                                    <form action="{{route('battles.accept' , ['id' => $notification->battle_id])}}" method="POST">
+                                        @csrf
+                                        <button>Accept</button>
+                                    </form>
+                                    <form action="{{route('battles.reject' , ['id' => $notification->battle_id])}}" method="POST">
+                                        @csrf
+                                        <button>Reject</button>
+                                    </form>
                                 </div>
                             </div>
                             
@@ -122,6 +125,7 @@
             </ul>
         @endauth
     </nav>
+    <div class="w-full h-1px mb-20"></div>
     <main>
         @yield('content')
     </main>

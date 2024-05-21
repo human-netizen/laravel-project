@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Battle;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,9 @@ class User extends Authenticatable
         'relationship_status',
         'followers_count',
         'following_count',
+        'bio',
+        'location',
+        'job',
     ];
 
     /**
@@ -69,5 +73,14 @@ class User extends Authenticatable
     public function isFollowing($user)
     {
         return $this->following()->where('user_id', $user->id)->exists();
+    }
+    public function battlesAsUser1()
+    {
+        return $this->hasMany(Battle::class, 'user1_id');
+    }
+
+    public function battlesAsUser2()
+    {
+        return $this->hasMany(Battle::class, 'user2_id');
     }
 }

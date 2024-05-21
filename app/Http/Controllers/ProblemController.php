@@ -12,12 +12,10 @@ class ProblemController extends Controller
 {
     public function index(Request $request)
     {
-        $response = Http::get('https://codeforces.com/api/problemset.recentStatus', [
-            'count' => 200,
-        ]);
+        $response = Http::get('https://codeforces.com/api/problemset.problems');
 
-        $problems = $response->json()['result'];
-
+        $problems = $response->json()['result']['problems'];
+        
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = 50;
         $currentItems = array_slice($problems, ($currentPage - 1) * $perPage, $perPage);

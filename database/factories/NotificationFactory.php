@@ -17,8 +17,12 @@ class NotificationFactory extends Factory
     public function definition()
     {
         return [
-            'content' => $this->faker->sentence,
             'is_read' => false,
+            'problem_name' => $this->faker->sentence(6),
+            'contest_id' => $this->faker->word,
+            'index' => $this->faker->word,
+            'battle_id' => $this->faker->randomNumber(),
+            
         ];
     }
 }

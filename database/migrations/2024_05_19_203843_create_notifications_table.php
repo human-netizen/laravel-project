@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('to_id')->constrained('users')->onDelete('cascade'); 
             $table->foreignId('from_id')->constrained('users')->onDelete('cascade'); 
-            $table->string('content');
+            $table->longText('problem_name');
+            $table->string('contest_id');
+            $table->string('index');
             $table->boolean('is_read')->default(false);
+            $table->integer('battle_id')->nullable();
             $table->timestamps();
         });
     }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion Example</title>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+
+<div x-data="{ open: null }" class="w-full max-w-md mx-auto">
+    <div class="mb-4">
+        <button @click="open = (open === 1 ? null : 1)" class="w-full text-left p-4 bg-gray-800 rounded-lg focus:outline-none focus:bg-gray-700">
+            <h2 class="text-lg font-bold">Accordion 1</h2>
+        </button>
+        <div x-show="open === 1" class="p-4 bg-gray-700 rounded-b-lg">
+            <p>This is the content of Accordion 1.</p>
+        </div>
+    </div>
+    <div class="mb-4">
+        <button @click="open = (open === 2 ? null : 2)" class="w-full text-left p-4 bg-gray-800 rounded-lg focus:outline-none focus:bg-gray-700">
+            <h2 class="text-lg font-bold">Accordion 2</h2>
+        </button>
+        <div x-show="open === 2" class="p-4 bg-gray-700 rounded-b-lg">
+            <p>This is the content of Accordion 2.</p>
+        </div>
+    </div>
+    <div class="mb-4">
+        <button @click="open = (open === 3 ? null : 3)" class="w-full text-left p-4 bg-gray-800 rounded-lg focus:outline-none focus:bg-gray-700">
+            <h2 class="text-lg font-bold">Accordion 3</h2>
+        </button>
+        <div x-show="open === 3" class="p-4 bg-gray-700 rounded-b-lg">
+            <p>This is the content of Accordion 3.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="main-content">
+        <div class="main-content" x-data="{ open: false }">
             <div class="sidebar">
                 <div class="intro-section">
                     <h2>Intro</h2>
@@ -83,17 +83,22 @@
             </div>
             <div class="content">
                 <div class="actions-section">
-                    <button class="action-button story-button">+ Add to story</button>
+                    <form action="/battleground">
+                        <button class="action-button story-button">Battle logs</button>
+                    </form>
                     <form action="/profile/edit">
                         <button type="submit" class="action-button edit-button"><i class="fas fa-pencil-alt"></i> Edit profile</button>
                     </form>
                 </div>
                 <div class="posts-section">
-                    <div class="create-post">
-                        <textarea placeholder="What's on your mind?"></textarea>
-                        <button class="post-button">Post</button>
+                    <div class="create-post p-4 bg-gray-800 rounded-lg shadow-lg" @click="open = true">
+                        <div class="flex items-center space-x-4 w-full">
+                            <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/no-image.png') }}" alt="{{ $user->name }}" class="w-10 h-10 rounded-full">
+                            <textarea placeholder="What's on your mind, {{ $user->name }}?" class="w-full bg-gray-700 text-white rounded-lg p-2"></textarea>
+                        </div>
                     </div>
-                    <div class="posts">
+                    <div class="posts mt-4 space-y-4">
+                        <!-- Existing posts will go here -->
                         <div class="post">
                             <div class="post-header">
                                 <div class="post-author">John Doe</div>
@@ -127,6 +132,38 @@
                                 <button class="comment-button"><i class="fas fa-comment"></i> Comment</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div x-show="open" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+                <div class="bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-2xl font-bold text-white">Create post</h3>
+                        <button @click="open = false" class="text-gray-400 hover:text-gray-200">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/no-image.png') }}" alt="{{ $user->name }}" class="w-10 h-10 rounded-full mr-4">
+                        <div>
+                            <h4 class="text-white">{{ $user->name }}</h4>
+                            <select class="bg-gray-700 text-white rounded-lg p-2">
+                                <option value="public">Public</option>
+                                <option value="friends">Friends</option>
+                                <option value="only_me">Only me</option>
+                            </select>
+                        </div>
+                    </div>
+                    <textarea placeholder="What's on your mind, {{ $user->name }}?" class="w-full bg-gray-700 text-white rounded-lg p-2 mb-4" rows="4"></textarea>
+                    <div class="flex space-x-4 mb-4">
+                        <button class="flex-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2">Live Video</button>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white rounded-lg p-2">Photo/Video</button>
+                        <button class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg p-2">Feeling/Activity</button>
+                    </div>
+                    <div class="flex justify-end">
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2" @click="open = false">Post</button>
                     </div>
                 </div>
             </div>

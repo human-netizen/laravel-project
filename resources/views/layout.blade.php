@@ -3,139 +3,104 @@
 
 <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" />
     <script src="https://unpkg.com/alpinejs" defer></script>
+    
     @vite('resources/css/app.css')
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-    {{-- 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> --}}
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
-    <link src="css/app.css" rel="stylesheet">
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-    <script>
-
-    </script>
-
-    <script></script>
-    <title>LaraGigs | Find Laravel Jobs & Projects</title>
+    <!-- Ensure FontAwesome is loaded -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>CodeChamp</title>
 </head>
 
-<body> <!-- Adjusted text color to midGray -->
-    <nav class="navibar ">
-        <div class="logo"></div>
-        @auth
-            <ul class="layoutul">
-                <li class="flex justify-center items-center">
-                    <span class="font-bold uppercase">Welcome {{ auth()->user()->name }}</span>
-                </li>
-                <li>
-                        <a href="/listings/manage" class="btn"> <!-- Adjusted text and hover colors -->
-                        <i class="fa-solid fa-gear"></i> Manage
-                    </a>
-                </li>
-                <li>
-                    <form action="/logout" method="POST">
-                        @csrf
-                        <button class="btn"> <!-- Adjusted hover color -->
-                            <div class="aclass">
-                                <i class="fa-solid fa-door-closed"></i>
-                                Logout
-                            </div>
+<body class="bg-colorbody text-colorp">
+    <nav class="bg-dark shadow-lg navibar">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a class="text-white text-lg font-semibold" href="/">
+                    <img src="/images/logo.png" alt="Logo" class="h-8 w-8 inline-block mr-2">
+                    CodeChamp
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                @auth
+                @php
+                $notifications = Auth::user()->notifications;
+                $user = Auth::user();
+                $pendingNotifications = $notifications->filter(function ($notification) {
+                    $battle = \App\Models\Battle::find($notification->battle_id);
+                    return $battle && $battle->status == 'pending';
+                });
+                @endphp
+                    <span class="text-white">Welcome, {{ auth()->user()->name }}</span>
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="text-white hover:text-colora2 relative">
+                            <i class="fa-solid fa-bell"></i> <!-- Notification bell icon -->
+                            <span class="absolute top-0 right-0 bg-colora2 text-white rounded-full text-xs px-1.5">{{$pendingNotifications->count()}}</span>
                         </button>
-                    </form>
-                </li>
-            </ul>
-            @php
-            $notifications = Auth::user()->notifications;
-
-            $pendingNotifications = $notifications->filter(function ($notification) {
-                $battle = \App\Models\Battle::find($notification->battle_id);
-                return $battle && $battle->status == 'pending';
-            });
-                    
-        @endphp
-            <div class="icon" onclick="toggleNotifi()">
-                <img src="/images/bell.png" alt=""> <span>{{$pendingNotifications->count()}}</span>
-            </div>
-            
-
-            <div class="notibar">
-                <div class="notifi-box" id="box">
-
-                    <h2>Notifications <span>{{$pendingNotifications->count()}}</span></h2>
-                    
-                    @foreach($pendingNotifications as $notification)
-                        @php
-                            $from = app\Models\User::find($notification->from_id)->name;
-                        @endphp
-                        <div class="notifi-item">
-                            <img src="/images/avatar1.png" alt="img">
-                            <div class="text">
-                                <h4>{{$from}}</h4>
-                                <p>{{$notification->problem_name}}</p>
-                                <div class="flex gap-4">
-                                    <form action="{{route('battles.accept' , ['id' => $notification->battle_id])}}" method="POST">
-                                        @csrf
-                                        <button>Accept</button>
-                                    </form>
-                                    <form action="{{route('battles.reject' , ['id' => $notification->battle_id])}}" method="POST">
-                                        @csrf
-                                        <button>Reject</button>
-                                    </form>
-                                </div>
+                        <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg overflow-hidden z-20">
+                            <div class="py-2">
+                                <h3 class="text-gray-800 text-center font-semibold">Notifications ({{$pendingNotifications->count()}})</h3>
+                                @foreach($pendingNotifications as $notification)
+                                    @php
+                                        $from = \App\Models\User::find($notification->from_id)->name;
+                                    @endphp
+                                    <div class="flex items-center px-4 py-3 border-b hover:bg-gray-100">
+                                        <img class="h-8 w-8 rounded-full object-cover mx-1" src="/images/avatar1.png" alt="avatar">
+                                        <div class="ml-2">
+                                            <h4 class="text-gray-800 font-semibold">{{$from}}</h4>
+                                            <p class="text-gray-600 text-sm">{{$notification->problem_name}}</p>
+                                            <div class="flex gap-2 mt-2">
+                                                <form action="{{route('battles.accept', ['id' => $notification->battle_id])}}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="bg-green-500 text-white px-2 py-1 rounded text-sm">Accept</button>
+                                                </form>
+                                                <form action="{{route('battles.reject', ['id' => $notification->battle_id])}}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded text-sm">Reject</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            
                         </div>
-                    @endforeach
-
-
-                </div>
-
+                    </div>
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" class="text-white hover:text-colora2 relative flex items-center">
+                            <img class="h-8 w-8 rounded-full object-cover" src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/no-image.png') }}" alt="profile">
+                            <i class="fa-solid fa-chevron-down ml-2"></i>
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden z-20">
+                            <a href="/profile/{{$user->id}}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                            <a href="/settings" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
+                            <form action="/logout" method="POST" class="block w-full">
+                                @csrf
+                                <button type="submit" class="bg-white w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <a href="/register" class="text-white hover:text-colora2"><i class="fa-solid fa-user-plus"></i> Register</a>
+                    <a href="/login" class="text-white hover:text-colora2"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                @endauth
             </div>
-        @else
-            <ul class="flex space-x-6 mr-6 text-lg">
-                <li>
-                    <a href="/register" class="text-midGray hover:text-hoverGray">
-                        <i class="fa-solid fa-user-plus"></i> Register
-                    </a>
-                </li>
-                <li>
-                    <a href="/login" class="text-midGray hover:text-hoverGray">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
-                    </a>
-                </li>
-            </ul>
-        @endauth
+        </div>
     </nav>
-    <div class="w-full h-1px mb-20"></div>
+    <div class="w-full h-1px mb-40"></div>
     <main>
         @yield('content')
     </main>
-    <footer class="w-full flex items-center justify-between font-bold bg-coolGrey text-white h-24 opacity-90">
-        <p class="text-center flex-1">Copyright &copy; 2022, All Rights Reserved</p>
-        <a href="/listings/create" class="bg-darkGrey text-white py-2 px-5 hover:bg-hoverGray">Post Job</a>
+    <footer class="bg-dark text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2022 CodeChamp, All Rights Reserved</p>
+            <br>
+            <a href="/listings/create" class="bg-colora hover:bg-colora2 text-white py-2 px-5 rounded"><i class="fa-solid fa-plus"></i> Post Job</a>
+        </div>
     </footer>
     <script src="{{ asset('js/app.js') }}"></script>
-
-
 </body>
-
 </html>

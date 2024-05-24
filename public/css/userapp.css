@@ -56,7 +56,7 @@ body {
     height: 300px;
     background-size: cover;
     position: relative;
-    background-position: center;
+    background-position: 50% 25%;
     background-repeat: no-repeat;
 }
 

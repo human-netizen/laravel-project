@@ -26,7 +26,7 @@
             <div class="text-lg space-y-6">
                 <div class="text-gray-200 ck-content" style="text-align: left; align-self: start; width: 100%;">
                     <div class="">
-                        {!! $listing->description !!}    
+                        {!! $listing->content !!}    
                     </div>
                     
                 </div>

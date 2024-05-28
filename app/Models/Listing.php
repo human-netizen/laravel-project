@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Listing extends Model
 {
     use HasFactory;
-    protected $fillable = ['title' , 'company' , 'location' , 'website' , 'email' , 'description' , 'tags' , 'logo' , 'user_id'];
+    protected $fillable = ['title' , 'content' , 'tags' , 'logo' , 'user_id' , 'likeCount'];
     
     public function scopeFilter($query ,array $filters){
         if($filters['tags'] ?? false)
@@ -26,6 +26,10 @@ class Listing extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');  // Only retrieves top-level comments
+    }
+    public function likedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'listing_id', 'user_id')->withTimestamps();
     }
     
     

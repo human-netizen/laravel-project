@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -13,7 +14,8 @@ class ListingController extends Controller
         $listings = (array) Listing::class;
 
         return view('listings.index', [
-            'listings' => Listing::latest()->filter(request(['tags', 'search']))->paginate(4)
+            'listings' => Listing::latest()->filter(request(['tags', 'search']))->paginate(4) , 
+            'trendingListings' => Listing::inRandomOrder()->limit(4)->get()
         ]);
     }
     public function show(Listing $listing)
@@ -30,12 +32,8 @@ class ListingController extends Controller
     {
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => ['required', Rule::unique('listings', 'company')],
-            'location' => 'required',
-            'website' => 'required',
-            'email' => ['required', 'email'],
             'tags' => 'required',
-            'description' => 'required'
+            'content' => 'required'
         ]);
         $formFields['user_id'] = auth()->id();
 
@@ -53,10 +51,6 @@ class ListingController extends Controller
     public function update(Request $request , Listing $listing){
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => 'required',
-            'location' => 'required',
-            'website' => 'required',
-            'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required'
         ]);
@@ -71,5 +65,33 @@ class ListingController extends Controller
     public function destroy(Listing $listing){
         $listing->delete();
         return redirect('/')->with('message' , 'Deleted Successfully');
+    }
+    public function like($id)
+    {
+        $listing = Listing::findOrFail($id);
+        if (auth()->user()->hasLiked($id)) {
+            return redirect()->back()->with('error', 'You have already liked this article!');
+        }
+
+        // Attach the like
+        auth()->user()->likes()->attach($id);
+        $listing->increment('likeCount');
+        $listing->save();
+        return back()->with('message', "Liked post");
+    }
+
+    public function dislike($id)
+    {
+        $listing = Listing::findOrFail($id);
+
+        $like = Like::where('user_id', auth()->id())->where('listing_id', $id)->first();
+
+        if (!$like) {
+            return redirect()->back()->with('error', 'You have not liked this listing yet!');
+        }
+
+        $like->delete();
+
+        return redirect()->back()->with('success', 'You disliked the listing!');
     }
 }

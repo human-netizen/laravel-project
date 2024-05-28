@@ -83,4 +83,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Battle::class, 'user2_id');
     }
+    public function likes()
+    {
+        return $this->belongsToMany(Listing::class, 'likes', 'user_id', 'listing_id')->withTimestamps();
+    }
+
+    public function hasLiked($listingId)
+    {
+        return $this->likes()->where('listing_id', $listingId)->exists();
+    }
 }

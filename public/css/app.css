@@ -77,7 +77,7 @@
 
 .ck-editor__editable[role="textbox"] {
     /* Editing area */
-    min-height: 500px;
+    min-height: 200px;
 }
 .ck-content .image {
     /* Block images */

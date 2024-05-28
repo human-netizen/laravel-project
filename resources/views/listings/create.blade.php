@@ -92,19 +92,6 @@
             </div>
         </form>
     </div>
-    <script>
-        ClassicEditor
-        .create(document.querySelector('#editor'), {
-        // Additional configuration to integrate Tailwind styles within the editor
-        contentStyle: 'body { @apply p-4 text-gray-700; } h1 { @apply text-2xl; } p { @apply mb-4; }'
-    }).then(editor => {
-                // The editor instance has been created successfully, you can access it here
-                console.log('Editor is ready to use!', editor);
-            })
-            .catch(error => {
-                // Error handling during the initialization
-                console.error('There was a problem initializing the editor:', error);
-            });
-    </script>
+
     
 @endsection

@@ -156,11 +156,9 @@
                             </select>
                         </div>
                     </div>
-                    <textarea placeholder="What's on your mind, {{ $user->name }}?" class="w-full bg-gray-700 text-white rounded-lg p-2 mb-4" rows="4"></textarea>
+                    <textarea placeholder="What's on your mind, {{ $user->name }}?" class="w-full bg-gray-700 text-white rounded-lg p-2 mb-4" rows="4" id="editor"></textarea>
                     <div class="flex space-x-4 mb-4">
-                        <button class="flex-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2">Live Video</button>
                         <button class="flex-1 bg-green-500 hover:bg-green-600 text-white rounded-lg p-2">Photo/Video</button>
-                        <button class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg p-2">Feeling/Activity</button>
                     </div>
                     <div class="flex justify-end">
                         <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2" @click="open = false">Post</button>
@@ -169,4 +167,5 @@
             </div>
         </div>
     </div>
+    
 @endsection

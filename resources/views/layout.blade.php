@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" />
     <script src="https://unpkg.com/alpinejs" defer></script>
-    
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+
     @vite('resources/css/app.css')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -102,5 +103,20 @@
         </div>
     </footer>
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+        ClassicEditor
+        .create(document.querySelector('#editor'), {
+        // Additional configuration to integrate Tailwind styles within the editor
+        contentStyle: 'body { @apply p-4 text-gray-700; } h1 { @apply text-2xl; } p { @apply mb-4; }'
+    }).then(editor => {
+                // The editor instance has been created successfully, you can access it here
+                console.log('Editor is ready to use!', editor);
+            })
+            .catch(error => {
+                // Error handling during the initialization
+                console.error('There was a problem initializing the editor:', error);
+            });
+    </script>
 </body>
 </html>

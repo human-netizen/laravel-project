@@ -90,3 +90,7 @@ Route::post('/battles/accept/{id}', [BattleController::class, 'acceptBattle'])->
 Route::post('/battles/reject/{id}', [BattleController::class, 'rejectBattle'])->name('battles.reject');
 Route::get('/battleground', [BattleController::class, 'battleground'])->name('battleground');
 Route::get('/battles/result/{id}', [BattleController::class, 'result'])->name('battles.result');
+
+Route::post('/listings/{id}/like', [ListingController::class, 'like'])->name('listings.like');
+Route::post('/listings/{id}/dislike', [ListingController::class, 'dislike'])->name('listings.dislike');
+

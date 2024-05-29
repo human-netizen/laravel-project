@@ -1,24 +1,29 @@
 @extends('layout')
 @section('content')
-<div class="container">
-    <div class="">
-        @foreach ($userlists as $user)
-            <!-- Dark themed listing cards with deeper grey background and subtle borders -->
-            {{-- <x-listing-card :listing="$listing" class="border border-gray-600" /> --}}
-            <div class="bg-gray-800 rounded-lg p-4 mb-4 mt-4">
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center">
-                        {{-- <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="w-12 h-12 rounded-full"> --}}
+    @include('partial._search')    
+    <!-- User List -->
+    <div class="container mx-auto mt-8">
+        <div class="shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-semibold mb-6">User List</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- User Card -->
+                @foreach ($users as $user)
+                    <div class="border rounded-lg p-4 userBox">
+                        <div class="flex items-center">
+                            <img src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/no-image.png') }}" alt="Profile Picture" class="w-16 h-16 rounded-full mr-4">
+                            <div>
+                                <h3 class="text-lg font-semibold">{{ $user->name }}</h3>
+                                <p class="text-gray-600">{{ $user->bio }}</p>
+                            </div>
+                        </div>
                         <div class="mt-4">
-                            <h2 class="text-lg font-semibold text-white">{{ $user->name }}</h2>
-                            <p class="text-gray-400">{{ $user->email }}</p>
+                            <a href="{{ url('/profile/' . $user->id) }}" class="text-blue-500 hover:underline">View Profile</a>
                         </div>
                     </div>
-                    {{-- <a href="{{ route('users.show', $user) }}" class="text-blue-500 hover:text-blue-600">View Profile</a> --}}
-                </div>
+                @endforeach
             </div>
-
-        @endforeach
+        </div>
     </div>
-</div>
-@endsection
+    @endsection
+
+

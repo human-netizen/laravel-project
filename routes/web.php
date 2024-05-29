@@ -44,7 +44,8 @@ Route::get('/submit-solution', function () {
 });
 Route::get('/submit-solution/battle/{id}', function ($id) {
     return view('judge.cfindex' , ['id' => $id]);
-});
+})->name('contestPage');
+Route::get('/battle/{id}/timer', [BattleController::class, 'showTimer'])->name('timerPage');
 
 Route::post('/submit-solution', [SolutionController::class, 'submitSolution'])->name('submitSolution');
 Route::post('/submit-solution/battle/{id}', [SolutionController::class, 'submitSolutionById'])->name('submitSolutionById');

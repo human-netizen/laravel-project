@@ -14,7 +14,7 @@ class UserController extends Controller
     public function userList(){
         //dd(User::all());
         return view('users.userlist', [
-            'userlists' => User::all()//->filter(request(['tags', 'search']))->paginate(4)
+            'users' => User::all()//->filter(request(['tags', 'search']))->paginate(4)
         ]);
     }
     public function store(Request $request){

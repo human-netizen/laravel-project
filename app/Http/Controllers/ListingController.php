@@ -15,7 +15,8 @@ class ListingController extends Controller
 
         return view('listings.index', [
             'listings' => Listing::latest()->filter(request(['tags', 'search']))->paginate(4) , 
-            'trendingListings' => Listing::inRandomOrder()->limit(4)->get()
+            'trendingListings' => Listing::trending()->take(10) // Get top 10 trending listings
+
         ]);
     }
     public function show(Listing $listing)
@@ -30,11 +31,13 @@ class ListingController extends Controller
     }
     public function store(Request $request)
     {
+
         $formFields = $request->validate([
             'title' => 'required',
             'tags' => 'required',
             'content' => 'required'
         ]);
+
         $formFields['user_id'] = auth()->id();
 
         if ($request->hasFile('logo')) {
@@ -52,7 +55,7 @@ class ListingController extends Controller
         $formFields = $request->validate([
             'title' => 'required',
             'tags' => 'required',
-            'description' => 'required'
+            'content' => 'required'
         ]);
 
         if ($request->hasFile('logo')) {

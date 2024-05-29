@@ -138,7 +138,7 @@
 
             <!-- Modal -->
             <div x-show="open" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
-                <div class="bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-xl">
+                <div class="bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-xl post-modal">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-2xl font-bold text-white">Create post</h3>
                         <button @click="open = false" class="text-gray-400 hover:text-gray-200">
@@ -156,13 +156,55 @@
                             </select>
                         </div>
                     </div>
-                    <textarea placeholder="What's on your mind, {{ $user->name }}?" class="w-full bg-gray-700 text-white rounded-lg p-2 mb-4" rows="4" id="editor"></textarea>
-                    <div class="flex space-x-4 mb-4">
-                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white rounded-lg p-2">Photo/Video</button>
-                    </div>
-                    <div class="flex justify-end">
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2" @click="open = false">Post</button>
-                    </div>
+                    <form method="POST" action="/listings" enctype="multipart/form-data">
+                        @csrf
+            
+            
+                        <div class="mb-6">
+                            <label for="title" class="inline-block text-lg mb-2">Article Title</label>
+                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title"
+                                value="{{ old('title') }}" placeholder="Example: [Tutorial] Everything about unordered_map" />
+                            @error('title')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+            
+            
+                        <div class="mb-6">
+                            <label for="tags" class="inline-block text-lg mb-2">
+                                Tags (Comma Separated)
+                            </label>
+                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="tags"
+                                value="{{ old('tags') }}" placeholder="Example: unordered_map, unordered_set, c++11, etc" />
+                            @error('tags')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+            
+                        <div class="mb-6">
+                            <label for="logo" class="inline-block text-lg mb-2">
+                                Image
+                            </label>
+                            <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
+                        </div>
+            
+                        <div class="mb-6">
+                            <label for="content" class="inline-block text-lg mb-2">
+                                Job content
+                            </label>
+                            <textarea class="border border-gray-200 rounded p-2 w-full" name="content" rows="10"
+                                placeholder="" id="editor">{{ old('content') }}</textarea>
+                               
+                        </div>
+            
+                        <div class="mb-6">
+                            <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
+                                Create Article
+                            </button>
+                            <a href="/" class="text-black ml-4"> Back </a>
+                        </div>
+                    </form>
+                    
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@
         var button = reply.querySelector('button');
         button.addEventListener('click', function() {
         
-            // Do something when the button is clicked
+
             
             var ulelem = reply.querySelector('.reply-elem');
             console.log(ulelem.innerHTML);

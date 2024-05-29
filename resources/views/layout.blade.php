@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" />
-    <script src="https://unpkg.com/alpinejs" defer></script>
+    {{-- <script src="https://unpkg.com/alpinejs" defer></script> --}}
+    <script src="/js/alpinejs.js" defer></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 
     @vite('resources/css/app.css')
@@ -97,9 +98,9 @@
     </main>
     <footer class="bg-dark text-white py-4">
         <div class="container mx-auto text-center">
-            <p>&copy; 2022 CodeChamp, All Rights Reserved</p>
+            <p>&copy; 2024 CodeChamp, All Rights Reserved</p>
             <br>
-            <a href="/listings/create" class="bg-colora hover:bg-colora2 text-white py-2 px-5 rounded"><i class="fa-solid fa-plus"></i> Post Job</a>
+            <a href="/listings/create" class="bg-colora hover:bg-colora2 text-white py-2 px-5 rounded"><i class="fa-solid fa-plus"></i> Post Article</a>
         </div>
     </footer>
     <script src="{{ asset('js/app.js') }}"></script>

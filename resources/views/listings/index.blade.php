@@ -9,7 +9,7 @@
     @include('partial._search')
 
     <div class="flex flex-col lg:flex-row gap-8 w-3/4 mx-auto">
-        <div class="w-full lg:w-3/4">
+        <div class="w-full lg:w-3/4" id="Articles">
             <h1 class="text-3xl font-bold mb-6 text-white">Articles</h1>
             <div class="space-y-6">
                 @foreach ($listings as $listing)
@@ -17,7 +17,8 @@
                         $created = $listing->created_at->toDateString();
                         $user = \App\Models\User::find($listing->user_id);
                         $name = $user->name;
-                        $substring = Str::substr($listing->content, 0, 200) . '...';
+                        $substring = Str::substr($listing->content, 0, 200);
+                        $substring = strip_tags($substring) . '...';
                         $likeCount = $listing->likedByUsers()->count();
                         $commentCount = $listing->comments()->count();
                     @endphp
@@ -25,7 +26,7 @@
                         style="background-color:rgb(36 34 40)">
                         <div class="w-full lg:w-1/2 relative">
                             <a href="{{ url('listings', $listing->id) }}">
-                                <img src="{{ asset('images/bebiluni.jpeg') }}" class="w-full h-full object-cover">
+                                <img src="{{ $listing->logo ? asset('storage/' . $listing->logo):  asset('images/bebiluni.jpeg') }}" class="w-full h-full object-cover listingImg">
                             </a>
                             <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">Save</div>
                         </div>
@@ -40,8 +41,9 @@
                                     </div>
                                     <span class="mt-auto">2 min read</span>
                                 </div>
+                                <x-tags-card :tagsCsv="$listing->tags" />
                                 <h1 class="text-3xl font-semibold mb-2 mt-5">{{ $listing->title }}</h1>
-                                <p class="mt-5 text-xl" style="color:rgb(198 208 223)">{{ $substring }}</p>
+                                <p class="mt-5 text-xl" style="color:rgb(198 208 223)">{!! $substring !!}</p>
                             </div>
                             <!-- Like and Comment Buttons -->
                             <div class="flex justify-between items-center mt-4">
@@ -67,10 +69,12 @@
                                     <span class="ml-2 text-white">{{ $likeCount }} likes</span>
                                 </div>
                                 <div class="flex items-center">
+                                    @auth
                                     <button class="comment-button bg-green-500 text-white px-4 py-2 rounded"
                                         data-listing-id="{{ $listing->id }}">
                                         <i class="fas fa-comment"></i> Comment
                                     </button>
+                                    @endauth
                                     <span class="ml-2 text-white">{{ $commentCount }} comments</span>
                                 </div>
                             </div>

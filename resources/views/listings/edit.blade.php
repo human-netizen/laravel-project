@@ -1,11 +1,11 @@
 @extends('layout')
 @section('content')
-    <div class="bg-gray-50 border border-gray-200 p-10 rounded  mx-auto mt-24 md:w-1/2">
+    <div class="border border-gray-200 p-10 rounded  mx-auto mt-24 md:w-1/2">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
                 Edit {{$listing->title}}
             </h2>
-            <p class="mb-4">Post a gig to find a developer</p>
+            <p class="mb-4">Post Article</p>
         </header>
 
         <form method="POST" action="/listings/{{$listing->id}}" enctype="multipart/form-data">
@@ -14,7 +14,7 @@
 
 
             <div class="mb-6">
-                <label for="title" class="inline-block text-lg mb-2">Job Title</label>
+                <label for="title" class="inline-block text-lg mb-2">Article Title</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title"
                     value="{{ $listing->title }}" placeholder="Example: Senior Laravel Developer" />
                 @error('title')
@@ -37,7 +37,7 @@
 
             <div class="mb-6">
                 <label for="logo" class="inline-block text-lg mb-2">
-                    Company Logo
+                    Image
                 </label>
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
             </div>
@@ -62,12 +62,5 @@
             </div>
         </form>
     </div>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-            
-    </script>
+
 @endsection

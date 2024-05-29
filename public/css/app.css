@@ -3,8 +3,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 :root {
     --ff: "Montserrat", sans-serif;
-    --colorbody: #1e1e1e;
-    --colora: #537fe7;
+    --tw-bg-opacity: 1;
+    --colorbody: rgb(23 23 23 / var(--tw-bg-opacity));
+    --colorbody2: #121010;
+    --colora: rgb(56 104 227 / var(--tw-bg-opacity));
+    
     --colora2: #ffe537;
     --colorp: #fff;
     --colorp2: #f2f2f2
@@ -23,6 +26,25 @@
     --subtext: 12px/20px var(--ff);
     --transition: 0.3s ease-in-out;
     --shadow: #00000030 0px 0px 10px 0px;
+    --shadow2: 10px 0 60px 4px #162859;
+}
+.listingImg{
+    max-height: 450px;
+
+}
+.post-modal{
+    overflow-y: auto;
+    max-height: 80vh;
+    width: 75%;
+}
+.col2{
+    background-color: var(--colorbody2)
+}
+.userBox{
+    box-shadow: var(--shadow2)
+}
+html {
+    scroll-behavior: smooth;
 }
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap");
 * {
@@ -600,10 +622,7 @@ main section.comment-module ul li ul {
     color: var(--colorbody);
 }
 .flex-comment-button {
-    min-height: 50px;
-    background-color: #3b5998;
-    color: white;
-    padding: 2px;
+
     margin-left: 5px;
 }
 textarea , input{
@@ -1093,4 +1112,8 @@ footer a:hover {
 
 .result-card{
     background-color: #1f202a;
+}
+.cfindexContainer{
+    background-color: var(--colorbody2);
+    box-shadow: var(--shadow2);
 }

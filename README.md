@@ -1,111 +1,97 @@
-# Competitive Programming Social Platform
+# CodeChamp (Competitive Programming Social Platform)
 
-This is a Laravel-based social platform that combines competitive programming with social networking features. The platform allows users to engage in coding battles, share posts, and interact with other programmers.
+A Laravel 9 app that combines article-style content with competitive programming battles and a simple online judge.
 
-## Core Features
+## Features (Implemented)
 
-### 1. Competitive Programming System
-- **Code Battles**: Users can challenge each other to real-time coding competitions
-  - Timed coding battles between two users
-  - Problem-based competitions with specific contest IDs
-  - Submission tracking and result comparison
-- **Judge System**: Automated code evaluation system
-  - Support for submitting solutions
-  - Real-time feedback on submissions
-  - Battle results and rankings
+- **Articles (Listings)**: create/edit/delete, image upload, tags, full‑text search, and rich‑text editing (CKEditor).
+- **Trending sidebar**: ranks articles by likes, comments, and recency.
+- **Likes + threaded comments** on articles.
+- **User accounts**: register/login/logout.
+- **Profiles**: edit profile fields, upload avatar/cover, follow/unfollow, and a user list page.
+- **Battles**: invite users from the Codeforces problem list, accept/reject via notification dropdown, view battleground and results, and submit solutions.
+- **Online judge page**: runs C++ against local testcases stored in `public/testcases`.
 
-### 2. Social Networking
-- **User Profiles**
-  - Customizable profile with image and cover photo
-  - Bio, location, job information
-  - Activity feed showing recent posts and battles
-- **Follow System**
-  - Follow/Unfollow other users
-  - Track followers and following counts
-  - Social connections between programmers
-- **Posts and Interactions**
-  - Create and share posts with the community
-  - Like and comment on posts
-  - Threaded comments support
-  - Trending posts algorithm based on:
-    - Like count
-    - Comment count
-    - Post recency
+## Requirements
 
-### 3. Real-time Features
-- **WebSocket Integration**
-  - Real-time notifications
-  - Live battle updates
-  - Instant messaging capabilities
-- **Battle Timer System**
-  - Real-time countdown during battles
-  - Synchronized battle start times
-  - Live status updates
-
-## Technical Stack
-
-### Backend
-- Laravel 9.x Framework
 - PHP 8.0.2+
-- Pusher for WebSocket functionality
-- Laravel Sanctum for authentication
-- Laravolt Avatar for user avatars
+- Composer
+- Node.js + npm
+- MySQL (default) or another Laravel‑supported database
 
-### Frontend
-- Blade templating engine
-- Alpine.js for reactive components
-- Tailwind CSS for styling
-- Real-time updates via WebSocket
+## Setup
 
-### Database
-- Migration system for database structure
-- Relationships:
-  - User followers/following
-  - Posts and comments
-  - Battle tracking
-  - Notifications
-  - Likes and interactions
+1. Install PHP dependencies
+   ```bash
+   composer install
+   ```
 
-## Features in Detail
+2. Install frontend dependencies
+   ```bash
+   npm install
+   ```
 
-### Listings System
-- Create and share posts with the community
-- Tag-based filtering and search functionality
-- Trending algorithm incorporating:
-  - Like count (weight: 1)
-  - Comment count (weight: 2)
-  - Post recency (weight: 3)
-- Advanced comment system with threaded discussions
+3. Create your environment file
+   ```bash
+   cp .env.example .env
+   ```
 
-### Battle System
-- Challenge other users to coding competitions
-- Timed coding challenges
-- Problem-based contests
-- Submission tracking for both participants
-- Real-time battle status updates
-- Result compilation and display
+4. Generate an app key
+   ```bash
+   php artisan key:generate
+   ```
 
-### Profile System
-- Comprehensive user profiles
-- Activity tracking
-- Social connections
-- Customizable profile elements:
-  - Profile picture
-  - Cover photo
-  - Bio
-  - Location
-  - Job information
-  - Relationship status
+5. Configure your database in `.env`
 
-## Getting Started
+6. Run migrations (optional: seed sample data)
+   ```bash
+   php artisan migrate
+   # or
+   php artisan migrate --seed
+   ```
 
-1. Clone the repository
-2. Install dependencies: `composer install`
-3. Set up environment variables: `cp .env.example .env`
-4. Generate application key: `php artisan key:generate`
-5. Run migrations: `php artisan migrate`
-6. Start the development server: `php artisan serve`
+7. Create the storage symlink for uploads
+   ```bash
+   php artisan storage:link
+   ```
 
-## Contributing
+## Running Locally
 
-Contributions are welcome! Please feel free to submit pull requests to help improve this platform.
+- Start the Laravel server
+  ```bash
+  php artisan serve
+  ```
+
+- In another terminal, start the Vite dev server
+  ```bash
+  npm run dev
+  ```
+
+Visit `http://localhost:8000`.
+
+## Feature Notes
+
+### Codeforces Problems & Battles
+- `/problems` fetches problems from the Codeforces API.
+- Battle invites appear in the navbar notification dropdown and can be accepted/rejected.
+- Battle submission and result lookups call a local service at `http://127.0.0.1:5000` with:
+  - `POST /submit`
+  - `GET /get_submission_details/{id}`
+  This service is **not included** in the repository.
+
+### Online Judge Page
+- `/judgeme?id=<contest>&task=<index>` loads testcases from `public/testcases/<contest>/<task>`.
+- The judge runs C++ via the OneCompiler RapidAPI endpoint. The API key is currently hardcoded in
+  `resources/views/judge/index.blade.php`.
+
+## Useful Commands
+
+- Run tests
+  ```bash
+  php artisan test
+  ```
+
+- Build frontend assets
+  ```bash
+  npm run build
+  ```
